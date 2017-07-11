@@ -20,6 +20,36 @@ public class User {
 
     private String email;
 
+    private Boolean enabled;
+
+    private String confirmationCode;
+
+    private Boolean confirmed;
+
+    public Boolean getConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(Boolean confirmed) {
+        this.confirmed = confirmed;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getConfirmationCode() {
+        return confirmationCode;
+    }
+
+    public void setConfirmationCode(String confirmationCode) {
+        this.confirmationCode = confirmationCode;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -43,8 +73,6 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-
-
 
 
 }

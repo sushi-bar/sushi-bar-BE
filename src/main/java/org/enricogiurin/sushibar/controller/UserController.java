@@ -1,6 +1,6 @@
 package org.enricogiurin.sushibar.controller;
 
-import org.enricogiurin.sushibar.po.User;
+import org.enricogiurin.sushibar.po.UserDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +18,9 @@ import java.util.List;
 public class UserController {
 
     @GetMapping(value = "")
-    public  @ResponseBody List<User> getAll() {
-        return Arrays.asList(new User("enricogiurin", "enricogiurin@gmail.com"),
-                new User("mariorossi", "mariorossi@yahoo.it"));
+    public  @ResponseBody List<UserDTO> getAll() {
+        return Arrays.asList(new UserDTO("enricogiurin", "enricogiurin@gmail.com"),
+                new UserDTO("mariorossi", "mariorossi@yahoo.it"));
     }
 
 }

@@ -1,16 +1,17 @@
 package org.enricogiurin.sushibar.controller;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.enricogiurin.sushibar.model.User;
 import org.enricogiurin.sushibar.model.UserRepository;
-import org.enricogiurin.sushibar.po.User;
+import org.enricogiurin.sushibar.po.UserDTO;
 import org.enricogiurin.sushibar.util.EmailSender;
 import org.enricogiurin.sushibar.util.StringResponse;
+import org.enricogiurin.sushibar.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by enrico on 7/8/17.
@@ -24,14 +25,38 @@ public class RegistrationController {
     private UserRepository userRepository;
 
     @PostMapping(value = "/registration" , produces = "application/json")
-    public StringResponse register(@RequestBody User user) {
-        org.enricogiurin.sushibar.model.User newUser = new org.enricogiurin.sushibar.model.User();
+    public StringResponse register(@RequestBody UserDTO user, HttpServletRequest request) {
+        List<User> users = userRepository.findByEmail(user.getEmail());
+        if (users.size() > 0) {
+            throw new IllegalArgumentException("Email "+user.getEmail()+" is already present in the system!");
+        }
+        final String confirmationCode = RandomStringUtils.random(10, true, true);
+
+        User newUser = new User();
         newUser.setEmail(user.getEmail());
         newUser.setUsername(user.getUsername());
+        newUser.setConfirmationCode(confirmationCode);
         userRepository.save(newUser);
+        //TODO - fix this url
+        String url = Utils.buildURL("http://localhost:8080/registration", user.getEmail(), confirmationCode);
 
         emailSender.sendSimpleMessage("enricogiurin@gmail.com", "registration to sushibar", "Dear " + user.getUsername() +
-                " you are registered to sushibar");
+                " click this link in order to resister to sushi-bar.\n" +url);
+        return new StringResponse("User "+user.getUsername()+ " - registration pending");
+    }
+
+    @GetMapping(value = "/registration" , produces = "application/json")
+    public StringResponse confirmRegistration(@RequestParam String registrationCode,  @RequestParam String email) {
+        List<User> users = userRepository.findByEmailAndConfirmationCode(email, registrationCode);
+        if (users.size() == 0) {
+            throw new IllegalArgumentException("User not found in the system");
+        }
+        User user = users.get(0);
+        user.setConfirmed(true);
+        user.setEnabled(true);
+        userRepository.save(user);
         return new StringResponse("User "+user.getUsername()+ " is registered");
     }
+
+
 }
