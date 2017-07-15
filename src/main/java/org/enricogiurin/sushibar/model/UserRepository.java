@@ -13,4 +13,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     List<User> findByEmailAndConfirmationCode(String email, String confirmationCode);
 
+    List<User> activeUsers();
+
 }

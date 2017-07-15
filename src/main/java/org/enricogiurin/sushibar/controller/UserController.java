@@ -1,26 +1,32 @@
 package org.enricogiurin.sushibar.controller;
 
+import org.enricogiurin.sushibar.model.User;
+import org.enricogiurin.sushibar.model.UserRepository;
 import org.enricogiurin.sushibar.po.UserDTO;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by enrico on 2/27/17.
  */
 
-@Controller
-@RequestMapping("/user")
+@RestController
 public class UserController {
 
-    @GetMapping(value = "")
-    public  @ResponseBody List<UserDTO> getAll() {
-        return Arrays.asList(new UserDTO("enricogiurin", "enricogiurin@gmail.com"),
-                new UserDTO("mariorossi", "mariorossi@yahoo.it"));
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping(value = "/user")
+    public  @ResponseBody List<UserDTO> activeUsers() {
+        List<User> activeUsers = userRepository.activeUsers();
+        return activeUsers.stream()
+                .map(user -> new UserDTO(user.getUsername(), user.getEmail()))
+                .collect(Collectors.toList());
     }
 
 }

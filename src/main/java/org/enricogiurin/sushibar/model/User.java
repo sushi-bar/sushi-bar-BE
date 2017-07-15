@@ -1,8 +1,6 @@
 package org.enricogiurin.sushibar.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 
 
 /**
@@ -10,6 +8,8 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "SB_User")
+@NamedQueries(value = {@NamedQuery(name = "User.activeUsers", query =
+        "from User u where u.enabled is true order by u.username asc")})
 public class User {
 
     @Id
