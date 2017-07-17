@@ -42,16 +42,9 @@ public class UserControllerTest {
     public void setup() throws Exception {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
         List<User> users = new ArrayList<>();
-        User user = new User();
-        user.setUsername("aa");
-        user.setEmail("aa@comp.org");
-        users.add(user);
-        user = new User();
-        user.setUsername("bb");
-        user.setEmail("bb@comp.org");
-        users.add(user);
+        users.add(new User("aa", "aa@comp.org"));
+        users.add(new User("bb", "bb@comp.org"));
         when(userRepository.activeUsers()).thenReturn(users);
-
     }
     @Autowired
     private WebApplicationContext webApplicationContext;

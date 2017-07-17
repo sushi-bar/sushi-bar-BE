@@ -25,6 +25,13 @@ public class User {
     private String confirmationCode;
 
     private Boolean confirmed;
+    //JPA constructor
+    public User(){}
+
+    public User(String username, String email){
+        this.username = username;
+        this.email= email;
+    }
 
     public Boolean getConfirmed() {
         return confirmed;
