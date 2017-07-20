@@ -1,6 +1,5 @@
 package org.enricogiurin.sushibar.controller;
 
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.enricogiurin.sushibar.model.User;
 import org.enricogiurin.sushibar.model.UserRepository;
@@ -25,7 +24,7 @@ public class RegistrationController {
     private UserRepository userRepository;
 
     @PostMapping(value = "/registration" , produces = "application/json")
-    public StringResponse register(@RequestBody UserDTO user, HttpServletRequest request) {
+    public StringResponse register(@RequestBody UserDTO user) {
         List<User> users = userRepository.findByEmail(user.getEmail());
         if (users.size() > 0) {
             throw new IllegalArgumentException("Email "+user.getEmail()+" is already present in the system!");
