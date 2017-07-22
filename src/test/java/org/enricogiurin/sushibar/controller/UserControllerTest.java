@@ -2,9 +2,11 @@ package org.enricogiurin.sushibar.controller;
 
 import org.enricogiurin.sushibar.Application;
 import org.enricogiurin.sushibar.model.User;
+import org.enricogiurin.sushibar.model.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -16,7 +18,6 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.BDDMockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -33,14 +34,17 @@ public class UserControllerTest extends BaseControllerTest {
             MediaType.APPLICATION_JSON.getSubtype(),
             Charset.forName("utf8"));
 
+    @Autowired
+    private UserRepository userRepository;
+
 
     @Before
     public void setup() throws Exception {
         super.setup();
         List<User> users = new ArrayList<>();
-        users.add(new User("aa", "aa@comp.org"));
-        users.add(new User("bb", "bb@comp.org"));
-        when(userRepository.activeUsers()).thenReturn(users);
+        users.add(new User("aa", "aa@comp.org", true));
+        users.add(new User("bb", "bb@comp.org", true));
+        userRepository.save(users);
     }
 
     @Test

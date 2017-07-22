@@ -15,10 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.nio.charset.Charset;
-import java.util.Arrays;
 
-import static org.mockito.BDDMockito.when;
-import static org.mockito.Matchers.anyString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -44,7 +41,6 @@ public class RegistrationControllerTest extends BaseControllerTest {
     @Before
     public void setup() throws Exception {
         super.setup();
-        when(userRepository.findByEmail(anyString())).thenReturn(Arrays.asList());
     }
 
     @Test

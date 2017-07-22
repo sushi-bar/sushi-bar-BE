@@ -1,9 +1,7 @@
 package org.enricogiurin.sushibar.controller;
 
-import org.enricogiurin.sushibar.model.UserRepository;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -21,9 +19,6 @@ public abstract class BaseControllerTest {
 
     @Autowired
     protected Filter springSecurityFilterChain;
-
-    @MockBean
-    protected UserRepository userRepository;
 
     protected MockMvc mockMvc;
 
