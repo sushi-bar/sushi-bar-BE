@@ -42,9 +42,9 @@ public class UserControllerTest extends BaseControllerTest {
     public void setup() throws Exception {
         super.setup();
         List<User> users = new ArrayList<>();
-        users.add(new User("aa", "aa@comp.org", true));
-        users.add(new User("bb", "bb@comp.org", true));
-        users.add(new User("notconfirmed", "notconfirmed@comp.org", false));
+        users.add(new User("aa", "aa@comp.org", true, "aaa"));
+        users.add(new User("bb", "bb@comp.org", true, "aaa"));
+        users.add(new User("notconfirmed", "notconfirmed@comp.org", false, "aaa"));
         userRepository.save(users);
     }
 

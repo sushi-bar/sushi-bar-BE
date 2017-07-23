@@ -3,7 +3,7 @@ package org.enricogiurin.sushibar.controller;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.enricogiurin.sushibar.model.User;
 import org.enricogiurin.sushibar.model.UserRepository;
-import org.enricogiurin.sushibar.po.UserDTO;
+import org.enricogiurin.sushibar.po.RequestUserDTO;
 import org.enricogiurin.sushibar.util.EmailSender;
 import org.enricogiurin.sushibar.util.StringResponse;
 import org.enricogiurin.sushibar.util.Utils;
@@ -24,7 +24,7 @@ public class RegistrationController {
     private UserRepository userRepository;
 
     @PostMapping(value = "/registration" , produces = "application/json")
-    public StringResponse register(@RequestBody UserDTO user) {
+    public StringResponse register(@RequestBody RequestUserDTO user) {
         List<User> users = userRepository.findByEmail(user.getEmail());
         if (users.size() > 0) {
             throw new IllegalArgumentException("Email "+user.getEmail()+" is already present in the system!");
@@ -34,6 +34,7 @@ public class RegistrationController {
         User newUser = new User();
         newUser.setEmail(user.getEmail());
         newUser.setUsername(user.getUsername());
+        newUser.setPassword(user.getPassword());
         newUser.setConfirmationCode(confirmationCode);
         userRepository.save(newUser);
         //TODO - fix this url
