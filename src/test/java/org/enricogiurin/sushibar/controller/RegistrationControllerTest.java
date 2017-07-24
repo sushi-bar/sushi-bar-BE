@@ -5,7 +5,7 @@ import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.GreenMailUtil;
 import com.icegreen.greenmail.util.ServerSetupTest;
 import org.enricogiurin.sushibar.Application;
-import org.enricogiurin.sushibar.po.UserDTO;
+import org.enricogiurin.sushibar.po.RequestUserDTO;
 import org.enricogiurin.sushibar.util.Utils;
 import org.junit.After;
 import org.junit.Before;
@@ -63,7 +63,7 @@ public class RegistrationControllerTest extends BaseControllerTest {
         mockMvc.perform(
                 post(URL_REGISTRATION)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(new UserDTO(USERNAME, EMAIL_TO))))
+                        .content(asJsonString(new RequestUserDTO(USERNAME, EMAIL_TO, ""))))
                 .andExpect(status().isOk());
 
         MimeMessage[] receivedMessages = testSmtp.getReceivedMessages();
