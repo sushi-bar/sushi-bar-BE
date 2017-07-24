@@ -82,6 +82,15 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.icegreen/greenmail -->
+        <!-- fake smpt server for email -->
+        <dependency>
+            <groupId>com.icegreen</groupId>
+            <artifactId>greenmail</artifactId>
+            <version>1.5.5</version>
+            <scope>test</scope>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
