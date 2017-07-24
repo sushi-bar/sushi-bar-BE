@@ -39,9 +39,8 @@ public class RegistrationController {
         userRepository.save(newUser);
         //TODO - fix this url
         String url = Utils.buildURL("http://localhost:8080/registration", user.getEmail(), confirmationCode);
-
-        emailSender.sendSimpleMessage("enricogiurin@gmail.com", "registration to sushibar", "Dear " + user.getUsername() +
-                " click this link in order to resister to sushi-bar.\n" +url);
+        //TODO - create text to send by email
+        emailSender.sendSimpleMessage(user.getEmail(), "registration to sushibar", url);
         return new StringResponse("User "+user.getUsername()+ " - registration pending");
     }
 
