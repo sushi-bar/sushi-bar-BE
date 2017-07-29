@@ -87,5 +87,4 @@ public class RegistrationControllerTest extends BaseControllerTest {
         testSmtp.stop();
     }
 
-
 }
