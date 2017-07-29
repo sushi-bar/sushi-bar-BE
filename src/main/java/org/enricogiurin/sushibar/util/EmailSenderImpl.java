@@ -19,7 +19,7 @@ import java.util.Map;
 @Component
 public class EmailSenderImpl implements EmailSender {
     public static final String SUBJECT = "registration to sushibar";
-    public static final String MAIL_FROM = "no-reply@sushibar.org";
+    public static final String EMAIL_FROM = "no-reply@sushibar.org";
     @Autowired
     private JavaMailSender emailSender;
 
@@ -33,7 +33,7 @@ public class EmailSenderImpl implements EmailSender {
                 MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
                 message.setTo(user.getEmail());
                 message.setSubject(SUBJECT);
-                message.setFrom(MAIL_FROM); // could be parameterized...
+                message.setFrom(EMAIL_FROM); // could be parameterized...
                 Map model = new HashMap();
                 model.put("user", user);
                 model.put("url", url);

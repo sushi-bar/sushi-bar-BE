@@ -72,7 +72,9 @@ public class RegistrationControllerTest extends BaseControllerTest {
         assertEquals(EmailSenderImpl.SUBJECT, receivedMessages[0].getSubject());
         String body = GreenMailUtil.getBody(receivedMessages[0]).replaceAll("=\r?\n", "");
         Address to = receivedMessages[0].getAllRecipients()[0];
+        Address from = receivedMessages[0].getFrom()[0];
         assertEquals(EMAIL_TO, to.toString());
+        assertEquals(EmailSenderImpl.EMAIL_FROM, from.toString());
         String url = TestUtils.extractLink(body);
         mockMvc.perform(get(url))
                 .andExpect(status().isOk());
