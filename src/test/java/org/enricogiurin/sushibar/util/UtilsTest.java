@@ -15,7 +15,7 @@ public class UtilsTest {
         String tmp = "http://localhost:8080/registration?email=enricogiurin@gmail.com&registrationCode=9Vr64iTK8v"
                 .substring("http://localhost:8080/registration?email=enricogiurin@gmail.com&registrationCode=9Vr64iTK8v".indexOf("e=") + 2);
         System.out.println(tmp);
-
     }
+
 
 }

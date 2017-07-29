@@ -1,24 +1,49 @@
 package org.enricogiurin.sushibar.util;
 
+import org.apache.velocity.app.VelocityEngine;
+import org.enricogiurin.sushibar.po.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.velocity.VelocityEngineUtils;
+
+import javax.mail.internet.MimeMessage;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by enrico on 7/8/17.
  */
 @Component
 public class EmailSenderImpl implements EmailSender {
+    public static final String SUBJECT = "registration to sushibar";
+    public static final String MAIL_FROM = "no-reply@sushibar.org";
     @Autowired
-    public JavaMailSender emailSender;
+    private JavaMailSender emailSender;
 
-    public void sendSimpleMessage(String to, String subject, String text) {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(to);
-            message.setSubject(subject);
-            message.setText(text);
-            emailSender.send(message);
+    @Autowired
+    private VelocityEngine velocityEngine;
+
+    @Override
+    public void sendEmail(final UserDTO user, String url) {
+        MimeMessagePreparator preparator = new MimeMessagePreparator() {
+            public void prepare(MimeMessage mimeMessage) throws Exception {
+                MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
+                message.setTo(user.getEmail());
+                message.setSubject(SUBJECT);
+                message.setFrom(MAIL_FROM); // could be parameterized...
+                Map model = new HashMap();
+                model.put("user", user);
+                model.put("url", url);
+                String text = VelocityEngineUtils.mergeTemplateIntoString(
+                        velocityEngine, "org/enricogiurin/sushibar/registration-confirmation.vm", model);
+                message.setText(text, true);
+            }
+        };
+        this.emailSender.send(preparator);
     }
+
+
 }

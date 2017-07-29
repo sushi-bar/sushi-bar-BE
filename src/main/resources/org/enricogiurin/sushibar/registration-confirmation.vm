@@ -1,0 +1,9 @@
+<html>
+    <body>
+        <h3>Hi ${user.username}, welcome to sushibar!</h3>
+
+        <div>
+            Please confirm your registration by clicking on this <a href="${url}">link</a>.
+        </div>
+    </body>
+</html>

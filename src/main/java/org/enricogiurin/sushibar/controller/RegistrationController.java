@@ -40,7 +40,7 @@ public class RegistrationController {
         //TODO - fix this url
         String url = Utils.buildURL("http://localhost:8080/registration", user.getEmail(), confirmationCode);
         //TODO - create text to send by email
-        emailSender.sendSimpleMessage(user.getEmail(), "registration to sushibar", url);
+        emailSender.sendEmail(user, url);
         return new StringResponse("User "+user.getUsername()+ " - registration pending");
     }
 

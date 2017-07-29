@@ -5,8 +5,9 @@ import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.GreenMailUtil;
 import com.icegreen.greenmail.util.ServerSetupTest;
 import org.enricogiurin.sushibar.Application;
+import org.enricogiurin.sushibar.TestUtils;
 import org.enricogiurin.sushibar.po.RequestUserDTO;
-import org.enricogiurin.sushibar.util.Utils;
+import org.enricogiurin.sushibar.util.EmailSenderImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -68,12 +69,11 @@ public class RegistrationControllerTest extends BaseControllerTest {
 
         MimeMessage[] receivedMessages = testSmtp.getReceivedMessages();
         assertEquals(1, receivedMessages.length);
-        assertEquals("registration to sushibar", receivedMessages[0].getSubject());
+        assertEquals(EmailSenderImpl.SUBJECT, receivedMessages[0].getSubject());
         String body = GreenMailUtil.getBody(receivedMessages[0]).replaceAll("=\r?\n", "");
         Address to = receivedMessages[0].getAllRecipients()[0];
-        String token = body
-                .substring(body.indexOf("e=") + 2);
-        String url = Utils.buildURL(URL_REGISTRATION, to.toString(), token);
+        assertEquals(EMAIL_TO, to.toString());
+        String url = TestUtils.extractLink(body);
         mockMvc.perform(get(url))
                 .andExpect(status().isOk());
 
