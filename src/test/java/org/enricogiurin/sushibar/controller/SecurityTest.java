@@ -16,11 +16,9 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 /**
@@ -29,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
-public class UserControllerTest extends BaseControllerTest {
+public class SecurityTest extends BaseControllerTest {
 
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
@@ -43,24 +41,14 @@ public class UserControllerTest extends BaseControllerTest {
         super.setup();
         List<User> users = new ArrayList<>();
         users.add(new User("aa", "aa@comp.org", "aaa", "", true, true));
-        users.add(new User("bb", "bb@comp.org", "aaa", "", true, true));
-        users.add(new User("notconfirmed", "notconfirmed@comp.org", "aaa", "", false, false));
         userRepository.save(users);
     }
 
     @Test
-    public void activeUsers() throws Exception {
-        mockMvc.perform(get("/user").with(httpBasic("aa", "aaa"))
+    public void wrongPassword() throws Exception {
+        mockMvc.perform(get("/user").with(httpBasic("aa", "wrong"))
                 .contentType(contentType))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].username", is("aa")))
-                .andExpect(jsonPath("$[0].email", is("aa@comp.org")))
-                .andExpect(jsonPath("$[1].username", is("bb")))
-                .andExpect(jsonPath("$[1].email", is("bb@comp.org")));
+                .andExpect(status().is(401));
 
     }
-
-
 }

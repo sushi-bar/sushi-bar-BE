@@ -31,10 +31,12 @@ public class User {
     //JPA constructor
     public User(){}
 
-    public User(String username, String email, boolean enabled, String password) {
+    public User(String username, String email, String password, String confirmationCode, Boolean enabled, Boolean confirmed) {
         this.username = username;
         this.email = email;
         this.enabled = enabled;
+        this.confirmationCode = confirmationCode;
+        this.confirmed = confirmed;
         this.password = password;
     }
 
@@ -46,7 +48,7 @@ public class User {
         this.confirmed = confirmed;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
