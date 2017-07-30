@@ -3,6 +3,7 @@ package org.enricogiurin.sushibar.controller;
 import org.enricogiurin.sushibar.Application;
 import org.enricogiurin.sushibar.model.User;
 import org.enricogiurin.sushibar.model.UserRepository;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,6 +49,11 @@ public class UserControllerTest extends BaseControllerTest {
         userRepository.save(users);
     }
 
+    @After
+    public void after() throws Exception {
+        userRepository.deleteAll();
+    }
+
     @Test
     public void activeUsers() throws Exception {
         mockMvc.perform(get("/user").with(httpBasic("aa", "aaa"))
@@ -59,7 +65,6 @@ public class UserControllerTest extends BaseControllerTest {
                 .andExpect(jsonPath("$[0].email", is("aa@comp.org")))
                 .andExpect(jsonPath("$[1].username", is("bb")))
                 .andExpect(jsonPath("$[1].email", is("bb@comp.org")));
-
     }
 
 

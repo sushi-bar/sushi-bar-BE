@@ -6,12 +6,14 @@ import com.icegreen.greenmail.util.GreenMailUtil;
 import com.icegreen.greenmail.util.ServerSetupTest;
 import org.enricogiurin.sushibar.Application;
 import org.enricogiurin.sushibar.TestUtils;
+import org.enricogiurin.sushibar.model.UserRepository;
 import org.enricogiurin.sushibar.po.RequestUserDTO;
 import org.enricogiurin.sushibar.util.EmailSenderImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -35,6 +37,10 @@ public class RegistrationControllerTest extends BaseControllerTest {
     private static String EMAIL_TO = "enrico@enricogiurin.org";
     private static String URL_REGISTRATION = "/registration";
     private static String USERNAME = "enrico";
+
+    @Autowired
+    private UserRepository userRepository;
+
 
 
     private GreenMail testSmtp;
@@ -85,6 +91,7 @@ public class RegistrationControllerTest extends BaseControllerTest {
     @After
     public void after() {
         testSmtp.stop();
+        userRepository.deleteAll();
     }
 
 }
