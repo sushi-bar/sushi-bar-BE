@@ -33,11 +33,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             }
         })
                 .and()
-                .authorizeRequests()
-
-                .antMatchers("/registration").permitAll()
-                .antMatchers("/user").access("hasRole('ADMIN')")
-                .and()
                 .httpBasic()
                 .and()
                 .csrf().disable()

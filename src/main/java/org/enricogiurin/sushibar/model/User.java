@@ -1,13 +1,14 @@
 package org.enricogiurin.sushibar.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 
 /**
  * Created by enrico on 2/27/17.
  */
 @Entity
-@Table(name = "SB_User")
+@Table(name = "SBUser")
 @NamedQueries(value = {@NamedQuery(name = "User.activeUsers", query =
         "from User u where u.enabled is true order by u.username asc")})
 public class User {
@@ -27,6 +28,15 @@ public class User {
     private Boolean confirmed;
 
     private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 
     //JPA constructor
     public User(){}
@@ -95,6 +105,16 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
+
 
 
 }

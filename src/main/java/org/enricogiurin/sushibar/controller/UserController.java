@@ -4,6 +4,7 @@ import org.enricogiurin.sushibar.model.User;
 import org.enricogiurin.sushibar.model.UserRepository;
 import org.enricogiurin.sushibar.po.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping(value = "/user")
+    @Secured(value = {"ROLE_USER"})
     public  @ResponseBody List<UserDTO> activeUsers() {
         List<User> activeUsers = userRepository.activeUsers();
         return activeUsers.stream()

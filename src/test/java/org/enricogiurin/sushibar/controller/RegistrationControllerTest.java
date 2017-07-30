@@ -6,6 +6,8 @@ import com.icegreen.greenmail.util.GreenMailUtil;
 import com.icegreen.greenmail.util.ServerSetupTest;
 import org.enricogiurin.sushibar.Application;
 import org.enricogiurin.sushibar.TestUtils;
+import org.enricogiurin.sushibar.model.Role;
+import org.enricogiurin.sushibar.model.RoleRepository;
 import org.enricogiurin.sushibar.model.UserRepository;
 import org.enricogiurin.sushibar.po.RequestUserDTO;
 import org.enricogiurin.sushibar.util.EmailSenderImpl;
@@ -41,6 +43,8 @@ public class RegistrationControllerTest extends BaseControllerTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
 
 
     private GreenMail testSmtp;
@@ -60,6 +64,7 @@ public class RegistrationControllerTest extends BaseControllerTest {
     @Before
     public void setup() throws Exception {
         super.setup();
+        roleRepository.save(new Role(Role.ROLE_USER));
         testSmtp = new GreenMail(ServerSetupTest.SMTP);
         testSmtp.start();
     }
@@ -92,6 +97,7 @@ public class RegistrationControllerTest extends BaseControllerTest {
     public void after() {
         testSmtp.stop();
         userRepository.deleteAll();
+        roleRepository.deleteAll();
     }
 
 }

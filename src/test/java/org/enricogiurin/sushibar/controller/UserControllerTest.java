@@ -1,6 +1,8 @@
 package org.enricogiurin.sushibar.controller;
 
 import org.enricogiurin.sushibar.Application;
+import org.enricogiurin.sushibar.model.Role;
+import org.enricogiurin.sushibar.model.RoleRepository;
 import org.enricogiurin.sushibar.model.User;
 import org.enricogiurin.sushibar.model.UserRepository;
 import org.junit.After;
@@ -15,6 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -39,19 +42,26 @@ public class UserControllerTest extends BaseControllerTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @Before
     public void setup() throws Exception {
         super.setup();
+
+
         List<User> users = new ArrayList<>();
         users.add(new User("aa", "aa@comp.org", "aaa", "", true, true));
         users.add(new User("bb", "bb@comp.org", "aaa", "", true, true));
         users.add(new User("notconfirmed", "notconfirmed@comp.org", "aaa", "", false, false));
+        users.forEach(user -> user.setRoles(Collections.singleton(new Role(Role.ROLE_USER))));
         userRepository.save(users);
     }
 
     @After
     public void after() throws Exception {
         userRepository.deleteAll();
+        roleRepository.deleteAll();
     }
 
     @Test
