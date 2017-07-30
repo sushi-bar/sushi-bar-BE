@@ -1,5 +1,6 @@
 package org.enricogiurin.sushibar.controller;
 
+import org.enricogiurin.sushibar.model.Role;
 import org.enricogiurin.sushibar.model.User;
 import org.enricogiurin.sushibar.model.UserRepository;
 import org.enricogiurin.sushibar.po.UserDTO;
@@ -23,7 +24,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping(value = "/user")
-    @Secured(value = {"ROLE_USER"})
+    @Secured(value = {Role.ROLE_USER})
     public  @ResponseBody List<UserDTO> activeUsers() {
         List<User> activeUsers = userRepository.activeUsers();
         return activeUsers.stream()
