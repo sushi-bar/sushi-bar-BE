@@ -10,6 +10,7 @@ import org.enricogiurin.sushibar.util.StringResponse;
 import org.enricogiurin.sushibar.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,11 @@ public class RegistrationController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
 
 
     @PostMapping(value = "/registration" , produces = "application/json")
@@ -44,7 +50,7 @@ public class RegistrationController {
         User newUser = new User();
         newUser.setEmail(userDTO.getEmail());
         newUser.setUsername(userDTO.getUsername());
-        newUser.setPassword(userDTO.getPassword());
+        newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         newUser.setConfirmationCode(confirmationCode);
         newUser.setRole(Role.ROLE_USER);
 

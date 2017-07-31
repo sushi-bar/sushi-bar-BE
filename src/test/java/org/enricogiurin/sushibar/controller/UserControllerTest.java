@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -39,15 +40,18 @@ public class UserControllerTest extends BaseControllerTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Before
     public void setup() throws Exception {
         super.setup();
-
-
         List<User> users = new ArrayList<>();
-        users.add(new User("aa", "aa@comp.org", true, "", true, "aaa", Role.ROLE_USER));
-        users.add(new User("bb", "bb@comp.org", true, "", true, "aaa", Role.ROLE_USER));
-        users.add(new User("cc", "cc@comp.org", false, "", true, "aaa", Role.ROLE_USER));
+        String pwdEncoded = passwordEncoder.encode("aaa");
+        users.add(new User("aa", "aa@comp.org", true, "", true, pwdEncoded, Role.ROLE_USER));
+        users.add(new User("bb", "bb@comp.org", true, "", true, pwdEncoded, Role.ROLE_USER));
+        users.add(new User("cc", "cc@comp.org", false, "", true, pwdEncoded, Role.ROLE_USER));
 
         userRepository.save(users);
     }
