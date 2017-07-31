@@ -1,9 +1,9 @@
 package org.enricogiurin.sushibar.controller;
 
-import org.enricogiurin.sushibar.model.Role;
 import org.enricogiurin.sushibar.model.User;
 import org.enricogiurin.sushibar.model.UserRepository;
 import org.enricogiurin.sushibar.po.UserDTO;
+import org.enricogiurin.sushibar.util.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;

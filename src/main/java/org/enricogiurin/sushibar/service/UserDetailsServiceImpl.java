@@ -1,6 +1,5 @@
 package org.enricogiurin.sushibar.service;
 
-import org.enricogiurin.sushibar.model.Role;
 import org.enricogiurin.sushibar.model.User;
 import org.enricogiurin.sushibar.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.Collections;
 
 /**
  * Created by enrico on 7/29/17.
@@ -26,11 +23,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        Collection<Role> roles = user.getRoles();
-        List<SimpleGrantedAuthority> list = new ArrayList<>(2);
-        roles.forEach(role -> list.add(new SimpleGrantedAuthority(role.getName())));
+        String role = user.getRole();
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                user.isEnabled(), true, true, user.getConfirmed(), list);
+                user.isEnabled(), true, true, user.getConfirmed(), Collections.singleton(new SimpleGrantedAuthority(role)));
     }
 }

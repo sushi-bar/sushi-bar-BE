@@ -1,4 +1,4 @@
-package org.enricogiurin.sushibar.util;
+package org.enricogiurin.sushibar.component;
 
 import org.enricogiurin.sushibar.po.UserDTO;
 

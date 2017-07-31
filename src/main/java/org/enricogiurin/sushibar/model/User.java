@@ -1,7 +1,6 @@
 package org.enricogiurin.sushibar.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 
 /**
@@ -29,26 +28,21 @@ public class User {
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+    private String role;
 
     //JPA constructor
     public User(){}
 
-    public User(String username, String email, String password, String confirmationCode, Boolean enabled, Boolean confirmed) {
+    public User(String username, String email, Boolean enabled, String confirmationCode, Boolean confirmed, String password, String role) {
         this.username = username;
         this.email = email;
         this.enabled = enabled;
         this.confirmationCode = confirmationCode;
         this.confirmed = confirmed;
         this.password = password;
+        this.role = role;
     }
+
 
     public Boolean getConfirmed() {
         return confirmed;
@@ -106,15 +100,11 @@ public class User {
         this.password = password;
     }
 
-
-    public Collection<Role> getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
+    public void setRole(String role) {
+        this.role = role;
     }
-
-
-
 }

@@ -3,6 +3,7 @@ package org.enricogiurin.sushibar.controller;
 import org.enricogiurin.sushibar.Application;
 import org.enricogiurin.sushibar.model.User;
 import org.enricogiurin.sushibar.model.UserRepository;
+import org.enricogiurin.sushibar.util.Role;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +42,7 @@ public class SecurityTest extends BaseControllerTest {
     public void setup() throws Exception {
         super.setup();
         List<User> users = new ArrayList<>();
-        users.add(new User("aa", "aa@comp.org", "aaa", "", true, true));
+        users.add(new User("aa", "a@a.org", true, "", true, "", Role.ROLE_USER));
         userRepository.save(users);
     }
 
