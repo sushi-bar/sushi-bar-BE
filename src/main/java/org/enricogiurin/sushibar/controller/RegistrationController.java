@@ -9,10 +9,13 @@ import org.enricogiurin.sushibar.util.Role;
 import org.enricogiurin.sushibar.util.StringResponse;
 import org.enricogiurin.sushibar.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by enrico on 7/8/17.
@@ -21,21 +24,18 @@ import org.springframework.web.bind.annotation.*;
 public class RegistrationController {
 
     @Autowired
+    ConfigurableApplicationContext context;
+    @Autowired
     private EmailSender emailSender;
-
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-
-
 
     @PostMapping(value = "/registration" , produces = "application/json")
     @Secured(value = {Role.ROLE_ANONYMOUS})
     @Transactional
-    public StringResponse register(@RequestBody RequestUserDTO userDTO) {
+    public StringResponse register(@RequestBody RequestUserDTO userDTO, HttpServletRequest request) {
         userRepository.findByEmail(userDTO.getEmail())
                 .ifPresent(user -> {
                     throw new RuntimeException("email " + userDTO.getEmail() + " already present");
@@ -56,7 +56,7 @@ public class RegistrationController {
 
         userRepository.save(newUser);
         //TODO - fix this url
-        String url = Utils.buildURL("http://localhost:8080/registration", userDTO.getEmail(), confirmationCode);
+        String url = Utils.buildURL(request.getRequestURL().toString(), userDTO.getEmail(), confirmationCode);
         emailSender.sendEmail(userDTO, url);
         return new StringResponse("User " + userDTO.getUsername() + " - registration pending");
     }
