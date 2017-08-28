@@ -1,5 +1,7 @@
 package org.enricogiurin.sushibar.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 
@@ -22,10 +24,12 @@ public class User {
 
     private Boolean enabled;
 
+    @JsonIgnore
     private String confirmationCode;
 
     private Boolean confirmed;
 
+    @JsonIgnore
     private String password;
 
     private String role;

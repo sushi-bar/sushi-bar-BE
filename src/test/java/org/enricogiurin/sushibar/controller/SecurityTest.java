@@ -53,9 +53,15 @@ public class SecurityTest extends BaseControllerTest {
 
     @Test
     public void wrongPassword() throws Exception {
-        mockMvc.perform(get("/user").with(httpBasic("aa", "wrong"))
+        mockMvc.perform(get("/api/users").with(httpBasic("aa", "wrong"))
                 .contentType(contentType))
                 .andExpect(status().is(401));
+    }
 
+    @Test
+    public void noAuth() throws Exception {
+        mockMvc.perform(get("/api/users")
+                .contentType(contentType))
+                .andExpect(status().is(401));
     }
 }

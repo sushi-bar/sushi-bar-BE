@@ -10,7 +10,6 @@ import org.enricogiurin.sushibar.util.StringResponse;
 import org.enricogiurin.sushibar.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +32,6 @@ public class RegistrationController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping(value = "/registration" , produces = "application/json")
-    @Secured(value = {Role.ROLE_ANONYMOUS})
     @Transactional
     public StringResponse register(@RequestBody RequestUserDTO userDTO, HttpServletRequest request) {
         userRepository.findByEmail(userDTO.getEmail())
@@ -62,7 +60,6 @@ public class RegistrationController {
     }
 
     @GetMapping(value = "/registration" , produces = "application/json")
-    @Secured(value = {Role.ROLE_ANONYMOUS})
     public StringResponse confirmRegistration(@RequestParam String registrationCode,  @RequestParam String email) {
         User user = userRepository.findByEmailAndConfirmationCode(email, registrationCode)
                 .orElseThrow(() -> new RuntimeException(email + " not found"));
