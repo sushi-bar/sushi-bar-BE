@@ -5,13 +5,17 @@ package org.enricogiurin.sushibar.util;
  */
 public class StringResponse {
 
+    private String response;
+
     public StringResponse(String response) {
-        Response = response;
+        this.response = response;
+    }
+
+    public static StringResponse of(String response) {
+        return new StringResponse(response);
     }
 
     public String getResponse() {
-        return Response;
+        return response;
     }
-
-    private String Response;
 }

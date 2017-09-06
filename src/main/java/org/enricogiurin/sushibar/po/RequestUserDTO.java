@@ -19,4 +19,8 @@ public class RequestUserDTO extends UserDTO {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }

@@ -2,6 +2,7 @@ package org.enricogiurin.sushibar.controller;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.enricogiurin.sushibar.component.EmailSender;
+import org.enricogiurin.sushibar.exception.SBException;
 import org.enricogiurin.sushibar.model.User;
 import org.enricogiurin.sushibar.model.UserRepository;
 import org.enricogiurin.sushibar.po.RequestUserDTO;
@@ -10,6 +11,8 @@ import org.enricogiurin.sushibar.util.StringResponse;
 import org.enricogiurin.sushibar.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by enrico on 7/8/17.
  */
 @RestController
+@CrossOrigin
 public class RegistrationController {
 
     @Autowired
@@ -33,14 +37,14 @@ public class RegistrationController {
 
     @PostMapping(value = "/registration" , produces = "application/json")
     @Transactional
-    public StringResponse register(@RequestBody RequestUserDTO userDTO, HttpServletRequest request) {
+    public ResponseEntity<StringResponse> register(@RequestBody RequestUserDTO userDTO, HttpServletRequest request) {
         userRepository.findByEmail(userDTO.getEmail())
                 .ifPresent(user -> {
-                    throw new RuntimeException("email " + userDTO.getEmail() + " already present");
+                    throw new SBException("email " + userDTO.getEmail() + " already present");
                 });
         userRepository.findByUsername(userDTO.getUsername())
                 .ifPresent(user -> {
-                    throw new RuntimeException("username " + userDTO.getUsername() + " already present");
+                    throw new SBException("username " + userDTO.getUsername() + " already present");
                 });
 
         final String confirmationCode = RandomStringUtils.random(10, true, true);
@@ -56,18 +60,19 @@ public class RegistrationController {
         //TODO - fix this url
         String url = Utils.buildURL(request.getRequestURL().toString(), userDTO.getEmail(), confirmationCode);
         emailSender.sendEmail(userDTO, url);
-        return new StringResponse("User " + userDTO.getUsername() + " - registration pending");
+
+        return new ResponseEntity<>(StringResponse.of("User " + userDTO.getUsername() + " - registration pending"), HttpStatus.OK);
+        //return new StringResponse("User " + userDTO.getUsername() + " - registration pending");
     }
 
     @GetMapping(value = "/registration" , produces = "application/json")
-    public StringResponse confirmRegistration(@RequestParam String registrationCode,  @RequestParam String email) {
+    public ResponseEntity<StringResponse> confirmRegistration(@RequestParam String registrationCode, @RequestParam String email) {
         User user = userRepository.findByEmailAndConfirmationCode(email, registrationCode)
                 .orElseThrow(() -> new RuntimeException(email + " not found"));
-
         user.setConfirmed(true);
         user.setEnabled(true);
         userRepository.save(user);
-        return new StringResponse("User "+user.getUsername()+ " is registered");
+        return new ResponseEntity<>(StringResponse.of("User " + user.getUsername() + " has completed registration"), HttpStatus.OK);
     }
 
 
