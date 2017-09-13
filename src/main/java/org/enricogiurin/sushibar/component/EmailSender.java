@@ -1,6 +1,6 @@
 package org.enricogiurin.sushibar.component;
 
-import org.enricogiurin.sushibar.po.UserDTO;
+import org.enricogiurin.sushibar.dto.UserDTO;
 
 /**
  * Created by enrico on 7/8/17.

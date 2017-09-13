@@ -1,7 +1,7 @@
 package org.enricogiurin.sushibar.component;
 
 import org.apache.velocity.app.VelocityEngine;
-import org.enricogiurin.sushibar.po.UserDTO;
+import org.enricogiurin.sushibar.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;

@@ -1,4 +1,4 @@
-package org.enricogiurin.sushibar.po;
+package org.enricogiurin.sushibar.dto;
 
 /**
  * Created by enrico on 7/7/17.
@@ -32,4 +32,11 @@ public class UserDTO {
     }
 
 
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

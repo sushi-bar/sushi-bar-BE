@@ -1,4 +1,4 @@
-package org.enricogiurin.sushibar.po;
+package org.enricogiurin.sushibar.dto;
 
 /**
  * Created by enrico on 7/24/17.
