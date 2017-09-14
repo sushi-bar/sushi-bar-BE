@@ -31,13 +31,10 @@ public class RegistrationBO {
     @Lazy
     private PasswordEncoder passwordEncoder;
 
-    @Transactional()
-    public synchronized void register(RequestUserDTO userDTO, String requestURL) {
+    @Transactional
+    public void register(RequestUserDTO userDTO, String requestURL) {
         //ugly workaround to avoid concurrency issues
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-        }
+
         userRepository.findByUsernameOrEmail(userDTO.getUsername(), userDTO.getEmail())
                 .ifPresent(user -> {
                     throw new SBException("username or email already present in the system");
