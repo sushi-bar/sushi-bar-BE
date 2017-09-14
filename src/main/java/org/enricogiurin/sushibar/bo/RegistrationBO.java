@@ -31,16 +31,19 @@ public class RegistrationBO {
     @Lazy
     private PasswordEncoder passwordEncoder;
 
-
-    @Transactional
-    public void register(RequestUserDTO userDTO, String requestURL) {
+    @Transactional()
+    public synchronized void register(RequestUserDTO userDTO, String requestURL) {
+        //ugly workaround to avoid concurrency issues
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+        }
         userRepository.findByUsernameOrEmail(userDTO.getUsername(), userDTO.getEmail())
                 .ifPresent(user -> {
                     throw new SBException("username or email already present in the system");
                 });
 
         final String confirmationCode = RandomStringUtils.random(10, true, true);
-
         User newUser = new User();
         newUser.setEmail(userDTO.getEmail());
         newUser.setUsername(userDTO.getUsername());
@@ -48,10 +51,10 @@ public class RegistrationBO {
         newUser.setConfirmationCode(confirmationCode);
         newUser.setRole(Role.ROLE_USER);
 
-        userRepository.save(newUser);
         //TODO - fix this url
         String url = Utils.buildURL(requestURL, userDTO.getEmail(), confirmationCode);
         emailSender.sendEmail(userDTO, url);
+        userRepository.save(newUser);
     }
 
 
