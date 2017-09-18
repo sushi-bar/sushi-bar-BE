@@ -1,10 +1,14 @@
 package org.enricogiurin.sushibar.dto;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by enrico on 7/7/17.
  */
 public class UserDTO {
+    @NotNull
     private String username;
+    @NotNull
     private String email;
 
     public UserDTO(String username, String email) {

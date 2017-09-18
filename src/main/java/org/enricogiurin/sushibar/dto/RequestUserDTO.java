@@ -1,9 +1,12 @@
 package org.enricogiurin.sushibar.dto;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by enrico on 7/24/17.
  */
 public class RequestUserDTO extends UserDTO {
+    @NotNull
     private String password = null;
 
     public RequestUserDTO(String username, String email, String password) {

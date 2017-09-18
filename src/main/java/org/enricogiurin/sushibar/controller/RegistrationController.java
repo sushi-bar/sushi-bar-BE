@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 /**
  * Created by enrico on 7/8/17.
@@ -21,7 +22,7 @@ public class RegistrationController {
 
 
     @PostMapping(value = "/registration", produces = "application/json")
-    public synchronized ResponseEntity<StringResponse> register(@RequestBody RequestUserDTO userDTO, HttpServletRequest request) {
+    public synchronized ResponseEntity<StringResponse> register(@RequestBody @Valid RequestUserDTO userDTO, HttpServletRequest request) {
         registrationBO.register(userDTO, request.getRequestURL().toString());
         return new ResponseEntity<>(StringResponse.of("User " + userDTO.getUsername() + " - registration pending"), HttpStatus.OK);
     }
