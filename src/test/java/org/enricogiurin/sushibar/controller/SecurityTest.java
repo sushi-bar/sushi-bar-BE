@@ -42,7 +42,12 @@ public class SecurityTest extends BaseControllerTest {
     public void setup() throws Exception {
         super.setup();
         List<User> users = new ArrayList<>();
-        users.add(new User("aa", "a@a.org", true, "", true, "", Role.ROLE_USER));
+        User aa = User.builder()
+                .email("a@a.org")
+                .username("aa")
+                .role(Role.ROLE_USER)
+                .build();
+        users.add(aa);
         userRepository.save(users);
     }
 

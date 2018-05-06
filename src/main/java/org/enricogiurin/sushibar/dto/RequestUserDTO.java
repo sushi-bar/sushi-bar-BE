@@ -1,10 +1,17 @@
 package org.enricogiurin.sushibar.dto;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.validation.constraints.NotNull;
 
 /**
  * Created by enrico on 7/24/17.
  */
+@NoArgsConstructor
+@Getter
+@Setter
 public class RequestUserDTO extends UserDTO {
     @NotNull
     private String password = null;
@@ -13,17 +20,4 @@ public class RequestUserDTO extends UserDTO {
         super(username, email);
         this.password = password;
     }
-
-    public RequestUserDTO() {
-        super();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 }

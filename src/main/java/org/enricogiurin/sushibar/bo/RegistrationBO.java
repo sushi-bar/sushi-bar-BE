@@ -15,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.enricogiurin.sushibar.util.Role.ROLE_USER;
+
 /**
  * Created by enrico on 7/8/17.
  */
@@ -41,13 +43,13 @@ public class RegistrationBO {
                 });
 
         final String confirmationCode = RandomStringUtils.random(10, true, true);
-        User newUser = new User();
-        newUser.setEmail(userDTO.getEmail());
-        newUser.setUsername(userDTO.getUsername());
-        newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        newUser.setConfirmationCode(confirmationCode);
-        newUser.setRole(Role.ROLE_USER);
-
+        User newUser = User.builder()
+                .email(userDTO.getEmail())
+                .username(userDTO.getUsername())
+                .password(passwordEncoder.encode(userDTO.getPassword()))
+                .confirmationCode(confirmationCode)
+                .role(ROLE_USER)
+                .build();
         //TODO - fix this url
         String url = Utils.buildURL(requestURL, userDTO.getEmail(), confirmationCode);
         emailSender.sendEmail(userDTO, url);

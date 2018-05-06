@@ -26,6 +26,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         String role = user.getRole();
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                user.isEnabled(), true, true, user.getConfirmed(), Collections.singleton(new SimpleGrantedAuthority(role)));
+                user.getEnabled(), true, true, user.getConfirmed(), Collections.singleton(new SimpleGrantedAuthority(role)));
     }
 }
