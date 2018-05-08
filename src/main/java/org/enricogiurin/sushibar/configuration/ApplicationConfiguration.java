@@ -11,9 +11,7 @@ import org.springframework.ui.velocity.VelocityEngineFactory;
 import java.io.IOException;
 import java.util.Properties;
 
-/**
- * Created by enrico on 7/28/17.
- */
+
 @Configuration
 public class ApplicationConfiguration {
 

@@ -1,7 +1,7 @@
 package org.enricogiurin.sushibar.service;
 
 import org.enricogiurin.sushibar.model.User;
-import org.enricogiurin.sushibar.model.UserRepository;
+import org.enricogiurin.sushibar.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
-/**
- * Created by enrico on 7/29/17.
- */
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired

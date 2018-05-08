@@ -4,9 +4,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-/**
- * Created by enrico on 7/28/17.
- */
 public class TestUtils {
 
     public static String extractLink(String html) {

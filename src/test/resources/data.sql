@@ -1,0 +1,11 @@
+SET REFERENTIAL_INTEGRITY FALSE;
+TRUNCATE TABLE SB_USER;
+TRUNCATE TABLE CUSTOMER;
+COMMIT;
+
+SET REFERENTIAL_INTEGRITY TRUE;
+INSERT INTO SB_USER (id, username, email, enabled, confirmed, password, role) VALUES
+  (1, 'cicciopasticcio', 'a@b.com', TRUE, TRUE, '$2a$10$B/dmAz4IXat0ieO0s6pRkuOY1kelPOn2YNLJqYfdqA96dof85Y9D2',
+   'ROLE_USER');
+INSERT INTO CUSTOMER (id, user_id) VALUES (1, 1);
+COMMIT;

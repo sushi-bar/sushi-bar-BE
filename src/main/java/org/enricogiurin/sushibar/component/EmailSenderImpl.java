@@ -13,9 +13,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by enrico on 7/8/17.
- */
+
 @Component
 public class EmailSenderImpl implements EmailSender {
     public static final String SUBJECT = "registration to sushibar";

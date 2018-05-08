@@ -1,11 +1,7 @@
 package org.enricogiurin.sushibar.controller;
 
 import org.enricogiurin.sushibar.Application;
-import org.enricogiurin.sushibar.model.User;
-import org.enricogiurin.sushibar.model.UserRepository;
-import org.enricogiurin.sushibar.util.Role;
-import org.junit.After;
-import org.junit.Before;
+import org.enricogiurin.sushibar.model.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +11,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-/**
- * Created by enrico on 7/16/17.
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
@@ -38,34 +30,27 @@ public class SecurityTest extends BaseControllerTest {
     @Autowired
     private UserRepository userRepository;
 
-    @Before
-    public void setup() throws Exception {
-        super.setup();
-        List<User> users = new ArrayList<>();
-        User aa = User.builder()
-                .email("a@a.org")
-                .username("aa")
-                .role(Role.ROLE_USER)
-                .build();
-        users.add(aa);
-        userRepository.save(users);
-    }
-
-    @After
-    public void after() throws Exception {
-        userRepository.deleteAll();
-    }
 
     @Test
     public void wrongPassword() throws Exception {
-        mockMvc.perform(get("/api/users").with(httpBasic("aa", "wrong"))
+        assertThat(userRepository.findByUsername("cicciopasticcio")).isPresent();
+        mockMvc.perform(get("/simple").with(httpBasic("cicciopasticcio", "wrong"))
                 .contentType(contentType))
                 .andExpect(status().is(401));
     }
 
     @Test
+    public void rightPassword() throws Exception {
+        assertThat(userRepository.findByUsername("cicciopasticcio")).isPresent();
+        mockMvc.perform(get("/simple").with(httpBasic("cicciopasticcio", "aaa"))
+                .contentType(contentType))
+                .andExpect(status().is(200));
+    }
+
+
+    @Test
     public void noAuth() throws Exception {
-        mockMvc.perform(get("/api/users")
+        mockMvc.perform(get("/simple")
                 .contentType(contentType))
                 .andExpect(status().is(401));
     }

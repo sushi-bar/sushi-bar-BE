@@ -8,7 +8,7 @@ import org.enricogiurin.sushibar.Application;
 import org.enricogiurin.sushibar.TestUtils;
 import org.enricogiurin.sushibar.component.EmailSenderImpl;
 import org.enricogiurin.sushibar.dto.RequestUserDTO;
-import org.enricogiurin.sushibar.model.UserRepository;
+import org.enricogiurin.sushibar.model.repository.UserRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,9 +27,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * Created by enrico on 7/16/17.
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class})
 public class RegistrationControllerTest extends BaseControllerTest {
@@ -67,7 +64,7 @@ public class RegistrationControllerTest extends BaseControllerTest {
     public void register() throws Exception {
         mockMvc.perform(
                 post(URL_REGISTRATION)
-                        .contentType(MediaType.APPLICATION_JSON)
+                        .contentType(contentType)
                         .content(asJsonString(new RequestUserDTO(USERNAME, EMAIL_TO, ""))))
                 .andExpect(status().isOk());
 
@@ -89,7 +86,6 @@ public class RegistrationControllerTest extends BaseControllerTest {
     @After
     public void after() {
         testSmtp.stop();
-        userRepository.deleteAll();
     }
 
 }

@@ -1,20 +1,19 @@
 package org.enricogiurin.sushibar.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
 
 
-/**
- * Created by enrico on 2/27/17.
- */
 @Getter
 @Setter
 @Builder
 @Entity
-@Table(name = "SBUser")
+@Table(name = "SB_User")
 @NamedQueries(value = {@NamedQuery(name = "User.activeUsers", query =
         "from User u where u.enabled is true order by u.username asc")})
 public class User {

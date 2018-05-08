@@ -5,8 +5,7 @@ import org.enricogiurin.sushibar.component.EmailSender;
 import org.enricogiurin.sushibar.dto.RequestUserDTO;
 import org.enricogiurin.sushibar.exception.SBException;
 import org.enricogiurin.sushibar.model.User;
-import org.enricogiurin.sushibar.model.UserRepository;
-import org.enricogiurin.sushibar.util.Role;
+import org.enricogiurin.sushibar.model.repository.UserRepository;
 import org.enricogiurin.sushibar.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -17,9 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.enricogiurin.sushibar.util.Role.ROLE_USER;
 
-/**
- * Created by enrico on 7/8/17.
- */
 @Service
 public class RegistrationBO {
 
