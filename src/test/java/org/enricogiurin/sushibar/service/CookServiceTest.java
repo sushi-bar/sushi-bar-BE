@@ -1,6 +1,7 @@
 package org.enricogiurin.sushibar.service;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 //TBC
@@ -11,6 +12,7 @@ public class CookServiceTest {
     }
 
     @Test
+    @Ignore
     public void pendingOrders() {
     }
 }
