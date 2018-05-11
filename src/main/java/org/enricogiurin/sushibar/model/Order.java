@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "SB_ORDER")
+@Table(name = "sb_order")
 @NamedQueries(value = {@NamedQuery(name = "Order.pendingOrders", query =
         "select o from Order o where o.status = org.enricogiurin.sushibar.model.OrderStatus.CREATED")})
 

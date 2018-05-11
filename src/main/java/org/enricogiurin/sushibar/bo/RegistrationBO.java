@@ -1,10 +1,13 @@
 package org.enricogiurin.sushibar.bo;
 
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.enricogiurin.sushibar.component.EmailSender;
 import org.enricogiurin.sushibar.dto.RequestUserDTO;
 import org.enricogiurin.sushibar.exception.SBException;
+import org.enricogiurin.sushibar.model.Role;
 import org.enricogiurin.sushibar.model.User;
+import org.enricogiurin.sushibar.model.repository.RoleRepository;
 import org.enricogiurin.sushibar.model.repository.UserRepository;
 import org.enricogiurin.sushibar.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.enricogiurin.sushibar.util.Role.ROLE_USER;
 
 @Service
 public class RegistrationBO {
@@ -25,6 +27,8 @@ public class RegistrationBO {
     private EmailSender emailSender;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
     @Autowired
     @Lazy
     private PasswordEncoder passwordEncoder;
@@ -37,6 +41,8 @@ public class RegistrationBO {
                 .ifPresent(user -> {
                     throw new SBException("username or email already present in the system");
                 });
+        Role roleUser = roleRepository.findByName("ROLE_USER")
+                .orElseThrow(() -> new SBException("Role ROLE_USER not found in the system"));
 
         final String confirmationCode = RandomStringUtils.random(10, true, true);
         User newUser = User.builder()
@@ -44,7 +50,7 @@ public class RegistrationBO {
                 .username(userDTO.getUsername())
                 .password(passwordEncoder.encode(userDTO.getPassword()))
                 .confirmationCode(confirmationCode)
-                .role(ROLE_USER)
+                .roles(Lists.newArrayList(roleUser))
                 .build();
         //TODO - fix this url
         String url = Utils.buildURL(requestURL, userDTO.getEmail(), confirmationCode);
@@ -62,6 +68,4 @@ public class RegistrationBO {
         userRepository.save(user);
         return user.getUsername();
     }
-
-
 }
