@@ -1,17 +1,13 @@
 package org.enricogiurin.sushibar.component;
 
-import org.apache.velocity.app.VelocityEngine;
 import org.enricogiurin.sushibar.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.velocity.VelocityEngineUtils;
-
-import javax.mail.internet.MimeMessage;
-import java.util.HashMap;
-import java.util.Map;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 
 @Component
@@ -22,25 +18,22 @@ public class EmailSenderImpl implements EmailSender {
     private JavaMailSender emailSender;
 
     @Autowired
-    private VelocityEngine velocityEngine;
+    private TemplateEngine templateEngine;
 
     @Override
     public void sendEmail(final UserDTO user, String url) {
-        MimeMessagePreparator preparator = new MimeMessagePreparator() {
-            public void prepare(MimeMessage mimeMessage) throws Exception {
-                MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
-                message.setTo(user.getEmail());
-                message.setSubject(SUBJECT);
-                message.setFrom(EMAIL_FROM); // could be parameterized...
-                Map model = new HashMap();
-                model.put("user", user);
-                model.put("url", url);
-                String text = VelocityEngineUtils.mergeTemplateIntoString(
-                        velocityEngine, "org/enricogiurin/sushibar/registration-confirmation.vm", model);
-                message.setText(text, true);
-            }
+        MimeMessagePreparator messagePreparator = mimeMessage -> {
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            messageHelper.setFrom("no-reply@sushibar.org");
+            messageHelper.setTo(user.getEmail());
+            messageHelper.setSubject("registration to sushibar");
+            Context context = new Context();
+            context.setVariable("username", user.getUsername());
+            context.setVariable("url", url);
+            String content = templateEngine.process("mailTemplate", context);
+            messageHelper.setText(content, true);
         };
-        this.emailSender.send(preparator);
+        emailSender.send(messagePreparator);
     }
 
 
