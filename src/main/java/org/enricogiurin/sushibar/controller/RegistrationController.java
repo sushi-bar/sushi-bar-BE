@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 
-@RestController
+@RestController(value = "/registration")
 @CrossOrigin
 public class RegistrationController {
     @Autowired
     private RegistrationBO registrationBO;
 
 
-    @PostMapping(value = "/registration", produces = "application/json")
+    @PostMapping(produces = "application/json")
     public synchronized ResponseEntity<StringResponse> register(@RequestBody @Valid RequestUserDTO userDTO, HttpServletRequest request) {
         registrationBO.register(userDTO, request.getRequestURL().toString());
         return new ResponseEntity<>(StringResponse.of("User " + userDTO.getUsername() + " - registration pending"), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/registration" , produces = "application/json")
+    @GetMapping(produces = "application/json")
     public ResponseEntity<StringResponse> confirmRegistration(@RequestParam String registrationCode, @RequestParam String email) {
         String username = registrationBO.confirmRegistration(registrationCode, email);
         return new ResponseEntity<>(StringResponse.of("User " + username + " has completed registration"), HttpStatus.OK);
