@@ -18,5 +18,4 @@ public class OrderBO {
     public List<Order> pendingOrders() {
         return orderRepository.pendingOrders();
     }
-
 }

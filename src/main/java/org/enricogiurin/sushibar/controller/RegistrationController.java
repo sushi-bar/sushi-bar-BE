@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 
-@RestController(value = "/registration")
+@RestController
+@RequestMapping("/registration")
 @CrossOrigin
 public class RegistrationController {
     @Autowired

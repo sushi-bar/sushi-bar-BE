@@ -23,7 +23,5 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         }
         logger.error("unexpected exception", ex);
         return new ResponseEntity<>(StringResponse.of(ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-
-
     }
 }
