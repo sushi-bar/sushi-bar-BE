@@ -14,7 +14,6 @@ import javax.persistence.Id;
 @Setter
 @NoArgsConstructor
 @Entity
-
 public class Role {
 
     @Id
