@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.nio.charset.Charset;
 import java.util.Collections;
 
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -64,6 +65,7 @@ public class CookControllerTest {
         mockMvc.perform(get(URL).with(httpBasic("admin", "aaa"))
                 .contentType(contentType))
                 .andExpect(status().is(200));
+        Mockito.verify(mockUserDetailsService, times(1)).loadUserByUsername("admin");
     }
 
 
