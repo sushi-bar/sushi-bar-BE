@@ -2,7 +2,7 @@ package org.enricogiurin.sushibar.bo;
 
 import org.enricogiurin.sushibar.Application;
 import org.enricogiurin.sushibar.model.Order;
-import org.junit.Before;
+import org.enricogiurin.sushibar.model.repository.OrderRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +20,16 @@ public class OrderBOTest {
     @Autowired
     private OrderBO orderBO;
 
-    @Before
-    public void setUp() throws Exception {
-    }
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Test
     public void pendingOrders() {
+        //GIVEN
+        assertThat(orderRepository.findAll()).hasSize(2);
+        //WHEN
         List<Order> orders = orderBO.pendingOrders();
+        //THEN
         assertThat(orders).hasSize(1);
     }
 }

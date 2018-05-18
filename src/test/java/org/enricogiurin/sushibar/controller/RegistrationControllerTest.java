@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.GreenMailUtil;
 import com.icegreen.greenmail.util.ServerSetupTest;
-import org.enricogiurin.sushibar.Application;
 import org.enricogiurin.sushibar.TestUtils;
 import org.enricogiurin.sushibar.component.EmailSenderImpl;
 import org.enricogiurin.sushibar.dto.RequestUserDTO;
@@ -14,9 +13,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 
 import javax.mail.Address;
 import javax.mail.internet.MimeMessage;
@@ -28,8 +29,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {Application.class})
-public class RegistrationControllerTest extends BaseControllerTest {
+@SpringBootTest
+@AutoConfigureMockMvc
+public class RegistrationControllerTest {
 
     private static String EMAIL_TO = "enrico@enricogiurin.org";
     private static String URL_REGISTRATION = "/registration";
@@ -37,6 +39,9 @@ public class RegistrationControllerTest extends BaseControllerTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private MockMvc mockMvc;
 
     private GreenMail testSmtp;
 
@@ -54,7 +59,7 @@ public class RegistrationControllerTest extends BaseControllerTest {
 
     @Before
     public void setup() throws Exception {
-        super.setup();
+        //super.setup();
         testSmtp = new GreenMail(ServerSetupTest.SMTP);
         testSmtp.start();
     }

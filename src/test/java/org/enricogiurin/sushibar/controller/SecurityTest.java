@@ -1,14 +1,14 @@
 package org.enricogiurin.sushibar.controller;
 
-import org.enricogiurin.sushibar.Application;
 import org.enricogiurin.sushibar.model.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.nio.charset.Charset;
 
@@ -19,9 +19,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
-@WebAppConfiguration
-public class SecurityTest extends BaseControllerTest {
+@SpringBootTest
+@AutoConfigureMockMvc
+public class SecurityTest {
 
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
@@ -29,6 +29,9 @@ public class SecurityTest extends BaseControllerTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private MockMvc mockMvc;
 
 
     @Test
