@@ -14,6 +14,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import static org.enricogiurin.sushibar.util.Roles.ADMIN;
+import static org.enricogiurin.sushibar.util.Roles.COOK;
+
 
 @Configuration
 @EnableWebSecurity
@@ -33,8 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         })
                 .and()
                 .authorizeRequests()
+                .antMatchers("/cook/*").hasAnyRole(ADMIN.name(), COOK.name())
+                .antMatchers("/spring-data-api").hasAnyRole(ADMIN.name())
                 .antMatchers("/registration").permitAll()
-                .antMatchers("/cook").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
