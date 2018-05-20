@@ -38,8 +38,8 @@ public class SecurityTest {
     @Test
     @Sql("/test-data.sql")
     public void wrongPassword() throws Exception {
-        assertThat(userRepository.findByUsername("cicciopasticcio")).isPresent();
-        mockMvc.perform(get("/simple").with(httpBasic("cicciopasticcio", "wrong"))
+        assertThat(userRepository.findByUsername("user")).isPresent();
+        mockMvc.perform(get("/simple").with(httpBasic("user", "wrong"))
                 .contentType(contentType))
                 .andExpect(status().is(401));
     }
@@ -47,8 +47,8 @@ public class SecurityTest {
     @Test
     @Sql("/test-data.sql")
     public void rightPassword() throws Exception {
-        assertThat(userRepository.findByUsername("cicciopasticcio")).isPresent();
-        mockMvc.perform(get("/simple").with(httpBasic("cicciopasticcio", "aaa"))
+        assertThat(userRepository.findByUsername("user")).isPresent();
+        mockMvc.perform(get("/simple").with(httpBasic("user", "aaa"))
                 .contentType(contentType))
                 .andExpect(status().is(200));
     }

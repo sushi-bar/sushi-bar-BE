@@ -10,9 +10,19 @@ COMMIT;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 INSERT INTO role (id, name) VALUES (1, 'ROLE_USER');
+INSERT INTO role (id, name) VALUES (2, 'ROLE_COOK');
+INSERT INTO role (id, name) VALUES (3, 'ROLE_ADMIN');
 INSERT INTO sb_user (id, username, email, enabled, confirmed, password)
-VALUES (1, 'cicciopasticcio', 'a@b.com', TRUE, TRUE, '$2a$10$B/dmAz4IXat0ieO0s6pRkuOY1kelPOn2YNLJqYfdqA96dof85Y9D2');
+VALUES (1, 'user', 'user@sushibar.org', TRUE, TRUE, '$2a$10$B/dmAz4IXat0ieO0s6pRkuOY1kelPOn2YNLJqYfdqA96dof85Y9D2');
+INSERT INTO sb_user (id, username, email, enabled, confirmed, password)
+VALUES (2, 'cook', 'cook@sushibar.org', TRUE, TRUE, '$2a$10$B/dmAz4IXat0ieO0s6pRkuOY1kelPOn2YNLJqYfdqA96dof85Y9D2');
+INSERT INTO sb_user (id, username, email, enabled, confirmed, password)
+VALUES (3, 'admin', 'admin@sushibar.org', TRUE, TRUE, '$2a$10$B/dmAz4IXat0ieO0s6pRkuOY1kelPOn2YNLJqYfdqA96dof85Y9D2');
 INSERT INTO user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (2, 2);
+INSERT INTO user_role (user_id, role_id) VALUES (3, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (3, 2);
+INSERT INTO user_role (user_id, role_id) VALUES (3, 3);
 INSERT INTO customer (id, user_id) VALUES (1, 1);
 INSERT INTO sb_order (id, customer_id, time_order, status)
 VALUES (1, 1, TO_DATE('2017-11-10 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'CREATED');

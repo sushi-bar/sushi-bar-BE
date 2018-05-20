@@ -22,6 +22,7 @@ import static org.enricogiurin.sushibar.util.Roles.COOK;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
+
     @Autowired
     private UserDetailsService userDetailsService;
 
