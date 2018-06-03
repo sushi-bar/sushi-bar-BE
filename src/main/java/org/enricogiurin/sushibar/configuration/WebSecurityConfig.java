@@ -14,8 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static org.enricogiurin.sushibar.util.Roles.ADMIN;
-import static org.enricogiurin.sushibar.util.Roles.COOK;
+import static org.enricogiurin.sushibar.util.Roles.*;
 
 
 @Configuration
@@ -23,7 +22,7 @@ import static org.enricogiurin.sushibar.util.Roles.COOK;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
 
-    @Autowired
+    @Autowired()
     private UserDetailsService userDetailsService;
 
     @Autowired
@@ -37,8 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         })
                 .and()
                 .authorizeRequests()
-                .antMatchers("/cook/*").hasAnyRole(ADMIN.name(), COOK.name())
-                .antMatchers("/spring-data-api").hasAnyRole(ADMIN.name())
+                .antMatchers("/cook/*").hasAnyRole(COOK.name())
+                .antMatchers("/customer/*").hasRole(CUSTOMER.name())
+                .antMatchers("/spring-data-api").hasRole(ADMIN.name())
                 .antMatchers("/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()

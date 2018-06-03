@@ -1,5 +1,5 @@
 package org.enricogiurin.sushibar.util;
 
 public enum Roles {
-    ADMIN, USER, COOK
+    ADMIN, CUSTOMER, COOK
 }

@@ -4,6 +4,7 @@ import org.enricogiurin.sushibar.model.Role;
 import org.enricogiurin.sushibar.model.User;
 import org.enricogiurin.sushibar.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 
 @Service
+@Primary
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;

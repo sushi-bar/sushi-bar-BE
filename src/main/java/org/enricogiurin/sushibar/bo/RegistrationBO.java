@@ -41,8 +41,8 @@ public class RegistrationBO {
                 .ifPresent(user -> {
                     throw new SBException("username or email already present in the system");
                 });
-        Role roleUser = roleRepository.findByName("ROLE_USER")
-                .orElseThrow(() -> new SBException("Role ROLE_USER not found in the system"));
+        Role roleUser = roleRepository.findByName("ROLE_CUSTOMER")
+                .orElseThrow(() -> new SBException("Role ROLE_CUSTOMER not found in the system"));
 
         final String confirmationCode = RandomStringUtils.random(10, true, true);
         User newUser = User.builder()

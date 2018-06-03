@@ -1,5 +1,5 @@
 package org.enricogiurin.sushibar.model;
 
 public enum OrderStatus {
-    CREATED, CANCELLED, COMPLETED
+    CREATED, CANCELLED, IN_PROGRESS, COMPLETED
 }
