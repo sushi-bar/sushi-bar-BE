@@ -40,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/customer/*").hasRole(CUSTOMER.name())
                 .antMatchers("/spring-data-api").hasRole(ADMIN.name())
                 .antMatchers("/registration").permitAll()
+                .antMatchers("/home").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

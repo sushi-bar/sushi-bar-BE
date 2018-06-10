@@ -9,7 +9,7 @@ TRUNCATE TABLE order_details;
 COMMIT;
 
 SET REFERENTIAL_INTEGRITY TRUE;
-INSERT INTO role (id, name) VALUES (1, 'ROLE_USER');
+INSERT INTO role (id, name) VALUES (1, 'ROLE_CUSTOMER');
 INSERT INTO role (id, name) VALUES (2, 'ROLE_COOK');
 INSERT INTO role (id, name) VALUES (3, 'ROLE_ADMIN');
 INSERT INTO sb_user (id, username, email, enabled, confirmed, password)

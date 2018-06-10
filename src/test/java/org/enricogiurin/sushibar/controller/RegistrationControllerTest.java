@@ -73,7 +73,7 @@ public class RegistrationControllerTest {
                 post(URL_REGISTRATION)
                         .contentType(contentType)
                         .content(asJsonString(new RequestUserDTO(USERNAME, EMAIL_TO, ""))))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().isOk());
 
         MimeMessage[] receivedMessages = testSmtp.getReceivedMessages();
         assertEquals(1, receivedMessages.length);
