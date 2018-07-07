@@ -9,16 +9,14 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.nio.charset.Charset;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -29,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@Sql("/test-data.sql")
 public class CookControllerSecurityTest {
 
     private static String URL = "/cook/pending";
@@ -52,23 +49,25 @@ public class CookControllerSecurityTest {
     }
 
     @Test
-    public void pendingOrdersAsAdmin() throws Exception {
-        mockMvc.perform(get(URL).with(httpBasic("admin", "aaa"))
+    @WithMockUser(roles = "COOK")
+    public void shouldGetOkWithCookRole() throws Exception {
+        mockMvc.perform(get(URL)
                 .contentType(contentType))
-                .andExpect(status().is(200));
+                .andExpect(status().isOk());
     }
 
     @Test
-    public void pendingOrdersAsCook() throws Exception {
-        mockMvc.perform(get(URL).with(httpBasic("cook", "aaa"))
+    public void shouldGetUnauthorizedWithoutRole() throws Exception {
+        mockMvc.perform(get(URL)
                 .contentType(contentType))
-                .andExpect(status().is(200));
+                .andExpect(status().isUnauthorized());
     }
 
     @Test
-    public void pendingOrdersAsUser() throws Exception {
-        mockMvc.perform(get(URL).with(httpBasic("user", "aaa"))
+    @WithMockUser(roles = "USER")
+    public void shouldGetForbiddenWithUserRole() throws Exception {
+        mockMvc.perform(get(URL)
                 .contentType(contentType))
-                .andExpect(status().is(HttpStatus.FORBIDDEN.value()));
+                .andExpect(status().isForbidden());
     }
 }

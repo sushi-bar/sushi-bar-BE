@@ -1,20 +1,17 @@
 package org.enricogiurin.sushibar.controller;
 
-import org.enricogiurin.sushibar.model.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.jdbc.Sql;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.nio.charset.Charset;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -29,35 +26,20 @@ public class SecurityTest {
             Charset.forName("utf8"));
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private MockMvc mockMvc;
 
-
     @Test
-    @Sql("/test-data.sql")
-    public void wrongPassword() throws Exception {
-        assertThat(userRepository.findByUsername("user")).isPresent();
-        mockMvc.perform(get("/simple").with(httpBasic("user", "wrong"))
-                .contentType(contentType))
-                .andExpect(status().is(401));
-    }
-
-    @Test
-    @Sql("/test-data.sql")
-    public void rightPassword() throws Exception {
-        assertThat(userRepository.findByUsername("user")).isPresent();
-        mockMvc.perform(get("/simple").with(httpBasic("user", "aaa"))
-                .contentType(contentType))
-                .andExpect(status().is(200));
-    }
-
-
-    @Test
-    public void noAuth() throws Exception {
+    @WithMockUser(roles = "USER")
+    public void shouldGetOkWithUserRole() throws Exception {
         mockMvc.perform(get("/simple")
                 .contentType(contentType))
-                .andExpect(status().is(401));
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void shouldGetUnauthorizedWithoutRole() throws Exception {
+        mockMvc.perform(get("/simple")
+                .contentType(contentType))
+                .andExpect(status().isUnauthorized());
     }
 }

@@ -6,7 +6,4 @@ public class SBException extends RuntimeException {
         super(message);
     }
 
-    public SBException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

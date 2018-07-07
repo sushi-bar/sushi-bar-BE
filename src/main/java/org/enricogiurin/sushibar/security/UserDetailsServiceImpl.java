@@ -1,4 +1,4 @@
-package org.enricogiurin.sushibar.service;
+package org.enricogiurin.sushibar.security;
 
 import org.enricogiurin.sushibar.model.Role;
 import org.enricogiurin.sushibar.model.User;
@@ -31,6 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .map(Role::getName)
                 .map(name -> new SimpleGrantedAuthority(name))
                 .collect(Collectors.toList());
+
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 user.getEnabled(), true, true, user.getConfirmed(), authorities);
     }
