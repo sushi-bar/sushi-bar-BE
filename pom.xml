@@ -15,6 +15,13 @@
     <!-- there is a dependency management section in the parent pon
     that's why some of the dependencies have no version -->
 
+    <scm>
+        <url>https://github.com/egch/sushi-bar-BE</url>
+        <connection>scm:git:git://github.com/egch/sushi-bar-BE.git</connection>
+        <developerConnection>scm:git:git@github.com:egch/sushi-bar-BE.git</developerConnection>
+    </scm>
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
