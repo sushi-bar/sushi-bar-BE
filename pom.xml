@@ -15,9 +15,13 @@
     <!-- there is a dependency management section in the parent pon
     that's why some of the dependencies have no version -->
 
+
+
+
     <scm>
-        <connection>scm:git:ssh://git@github.com:/egch/sushi-bar-BE.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:/egch/sushi-bar-BE.git</developerConnection>
+        <connection>scm:git:https://github.com/egch/sushi-bar-BE.git</connection>
+        <developerConnection>scm:git:https://github.com/egch/sushi-bar-BE.git</developerConnection>
+        <url>scm:git:https://github.com/egch/sushi-bar-BE</url>
     </scm>
 
 
