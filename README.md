@@ -3,6 +3,13 @@ Back End of the sushi bar application. Provides JSON/REST API
 
 swagger - http://localhost:8080/swagger-ui.html
 
+# Requirement
+Management system of a virtual sushi booth in which each customer can consult the online menu; once registered
+can place the order, indicate the table to be served and pay the bill.
+Once the bill has been paid, the cook appears with the order to cook and serve to the customer his dinner / lunch.
+A room administrator has a dashboard available to manage users, customize and compose the menu with the prices of the courses, supervise the
+work of the cook.
+
 # Original Requirement (italian)
 
 
