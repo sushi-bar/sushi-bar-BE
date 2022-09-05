@@ -13,6 +13,8 @@ work of the cook.
 # Architecture (draft)
 Based on Apache Kafka & spring boot.
 
+![Architecture Draft](docs/draft-arch.jpeg)
+
 
 # Original Requirement (italian)
 
