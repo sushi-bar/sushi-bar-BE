@@ -1,6 +1,7 @@
-# sushi-bar-BE [![Build Status](https://api.travis-ci.org/egch/sushi-bar-BE.svg?branch=master)](https://travis-ci.org/egch/sushi-bar-BE)
-Back End of the sushi bar application. 
+# sushi-bar-BE 
+Back End of the sushi bar application.
 
+[![sushi-bar](https://circleci.com/gh/sushi-bar/sushi-bar-BE.svg?style=svg)](https://app.circleci.com/pipelines/github/sushi-bar/sushi-bar-BE)
 
 
 # Requirement
