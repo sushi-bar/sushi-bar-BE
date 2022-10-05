@@ -10,10 +10,32 @@ Once the bill has been paid, the cook appears with the order to cook and serve t
 A room administrator has a dashboard available to manage users, customize and compose the menu with the prices of the courses, supervise the
 work of the cook.
 
-# Architecture (draft)
+## Prerequisites
+
+- jdk 11.0.4 or higher
+- maven 3.6.1 or higher
+- docker 1.6.0 or higher (<https://www.docker.com/>)
+
+## Architecture (draft)
 Based on Apache Kafka & spring boot.
 
 ![Architecture Draft](docs/draft-arch.jpeg)
+
+## Kafka (docker)
+
+Starting Kafka
+```shell
+$ docker compose up -d
+
+```
+
+Stopping Kafka
+```shell
+$ docker compose down
+```
+
+
+[Baeldung Kafka](https://www.baeldung.com/ops/kafka-docker-setup)
 
 
 # Original Requirement (italian)
