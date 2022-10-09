@@ -34,7 +34,16 @@ Stopping Kafka
 ```shell
 $ docker compose down
 ```
+Connecting to the docker container
+```shell
+$ docker exec -it sushi-bar-be_kafka_1  bash
+$ /bin/kafka-topics --list --bootstrap-server localhost:29092
+$ /bin//kafka-console-consumer --bootstrap-server localhost:29092 --topic orders --from-beginning
+```
+docker exec -it b6e2510cba8a  bash
 
+## Credits
+[3 Simple Steps to set up Kafka locally using Docker](https://towardsdev.com/3-simple-steps-to-set-up-kafka-locally-using-docker-b07f71f0e2c9)
 
 [Baeldung Kafka](https://www.baeldung.com/ops/kafka-docker-setup)
 
