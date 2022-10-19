@@ -23,8 +23,7 @@ public class KafkaServiceProducer {
         this.topicName = topicName;
     }
 
-    public void sendMessage() {
-        String message = System.currentTimeMillis()+"";
+    public void sendMessage(String message) {
         ListenableFuture<SendResult<String, String>> listenableFuture = kafkaTemplate.send(topicName, message);
         listenableFuture.addCallback(new ListenableFutureCallback<>() {
             @Override
@@ -35,7 +34,7 @@ public class KafkaServiceProducer {
 
             @Override
             public void onSuccess(SendResult<String, String> result) {
-                log.error("callback successful when publishing message: {}", message);
+                log.info("callback successful when publishing message: {}", message);
 
             }
         });
