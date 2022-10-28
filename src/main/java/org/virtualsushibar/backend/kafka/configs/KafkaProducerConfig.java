@@ -1,5 +1,6 @@
-package org.virtualsushibar.backend.kafka;
+package org.virtualsushibar.backend.kafka.configs;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,23 +14,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
+@RequiredArgsConstructor
 public class KafkaProducerConfig {
 
 
-    private final String bootstrapAddress;
-
-    public KafkaProducerConfig(@Value(value = "${kafka.bootstrapAddress}")String bootstrapAddress) {
-        this.bootstrapAddress = bootstrapAddress;
-    }
+    private final AbstractKafkaConfigs configs;
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
-        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, configs.getBootstapAddress());
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.MAX_REQUEST_SIZE_CONFIG, "20971520");
-
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
