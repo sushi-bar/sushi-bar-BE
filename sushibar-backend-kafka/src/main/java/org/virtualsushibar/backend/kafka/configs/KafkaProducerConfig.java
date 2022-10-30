@@ -12,7 +12,7 @@ import org.springframework.kafka.core.ProducerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import org.virtualsushibar.backend.avro.Order;
 @Configuration
 @RequiredArgsConstructor
 public class KafkaProducerConfig {
@@ -21,7 +21,7 @@ public class KafkaProducerConfig {
     private final AbstractKafkaConfigs configs;
 
     @Bean
-    public ProducerFactory<String, String> producerFactory() {
+    public ProducerFactory<String, Order> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, configs.getBootstapAddress());
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -31,7 +31,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, String> kafkaTemplate() {
-        return new KafkaTemplate<>(producerFactory());
+    public KafkaTemplate<String, Order> kafkaTemplate(ProducerFactory<String, Order> producerFactory) {
+        return new KafkaTemplate<>(producerFactory);
     }
 }

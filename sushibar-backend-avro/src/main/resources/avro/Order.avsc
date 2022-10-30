@@ -4,10 +4,8 @@
      "name": "Order",
      "version": "1",
      "fields": [
-        { "name": "payment_id", "type": "string" },
-        { "name": "amount", "type": "double" },
-        { "name": "currency", "type": "string" },
-        { "name": "to_account", "type": "string" },
-        { "name": "from_account", "type": "string" }
+        { "name": "id", "type": "string" },
+        { "name": "amount", "type": "int" },
+        { "name": "meal", "type": "string" }
      ]
 }

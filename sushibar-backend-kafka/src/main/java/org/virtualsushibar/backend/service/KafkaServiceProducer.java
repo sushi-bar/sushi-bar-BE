@@ -9,28 +9,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.virtualsushibar.backend.kafka.configs.AbstractKafkaConfigs;
-
+import org.virtualsushibar.backend.avro.Order;
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class KafkaServiceProducer {
 
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, Order> kafkaTemplate;
     private final AbstractKafkaConfigs configs;
 
-    public void sendMessage(String message) {
-        ListenableFuture<SendResult<String, String>> listenableFuture = kafkaTemplate.send(configs.getTopic(), message);
+    public void sendMessage(Order order) {
+        ListenableFuture<SendResult<String, Order>> listenableFuture = kafkaTemplate.send(configs.getTopic(), order);
         listenableFuture.addCallback(new ListenableFutureCallback<>() {
             @Override
             public void onFailure(Throwable ex) {
-                log.error("Error while publishing message: {}", message, ex);
+                log.error("Error while publishing message: {}", order, ex);
 
             }
 
             @Override
-            public void onSuccess(SendResult<String, String> result) {
-                log.info("callback successful when publishing message: {}", message);
+            public void onSuccess(SendResult<String, Order> result) {
+                log.info("callback successful when publishing message: {}", order);
 
             }
         });
