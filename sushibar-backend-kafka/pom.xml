@@ -9,10 +9,8 @@
 	</parent>
 	<artifactId>sushibar-backend-kafka</artifactId>
 	<packaging>jar</packaging>
-	<name>sushibar Backend Kafka</name>
-	<description>Demo project for Spring Boot</description>
-
-
+	<name>Sushibar Backend Kafka</name>
+	<description>Sushi Bar Kafka application</description>
 	<properties>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>

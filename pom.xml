@@ -61,9 +61,7 @@
 
 
 	<modules>
-		<!--
         <module>sushibar-backend-avro</module>
-        -->
 		<module>sushibar-backend-kafka</module>
 	</modules>
 </project>
