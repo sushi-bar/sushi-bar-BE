@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.virtualsushibar.backend.service.KafkaServiceProducer;
 import org.virtualsushibar.backend.avro.Order;
+import org.virtualsushibar.backend.service.KafkaServiceProducer;
 @RestController
 @RequestMapping("/v1/kafka/publish")
 @RequiredArgsConstructor

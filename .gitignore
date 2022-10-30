@@ -5,3 +5,4 @@ target/
 *.txt
 
 
+/sushibar-backend-avro/src/main/java/
