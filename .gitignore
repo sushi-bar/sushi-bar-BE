@@ -1,7 +1,7 @@
 target
 .idea
 *.iml
-/src/main/resources/config/application.properties
+/sushibar-backend-kafka/src/main/resources/config/application.properties
 *.txt
 
 
