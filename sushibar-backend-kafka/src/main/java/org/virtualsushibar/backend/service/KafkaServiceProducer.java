@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.virtualsushibar.backend.avro.Order;
-import org.virtualsushibar.backend.kafka.configs.AbstractKafkaConfigs;
+import org.virtualsushibar.backend.kafka.config.AbstractKafkaConfigs;
 @Service
 @Slf4j
 @RequiredArgsConstructor
