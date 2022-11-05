@@ -9,12 +9,11 @@ import org.springframework.context.annotation.Configuration;
 public class AbstractKafkaConfigs {
 
     public AbstractKafkaConfigs(@Value(value = "${application.topic.name}") String topic,
-                                @Value(value = "${kafka.bootstrapAddress}") String bootstrapAddress){
-
-        this.topic=topic;
-        this.bootstapAddress=bootstrapAddress;
+                                @Value(value = "${kafka.bootstrapAddress}") String bootstrapAddress) {
+        this.topic = topic;
+        this.bootstapAddress = bootstrapAddress;
     }
 
-   private  String topic;
-    private  String bootstapAddress;
+    private String topic;
+    private String bootstapAddress;
 }
