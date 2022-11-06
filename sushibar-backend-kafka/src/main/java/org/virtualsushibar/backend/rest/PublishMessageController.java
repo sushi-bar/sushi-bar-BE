@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.virtualsushibar.backend.avro.Order;
 import org.virtualsushibar.backend.service.KafkaServiceProducer;
-
 @RestController
 @RequestMapping("/v1/kafka/publish")
 @RequiredArgsConstructor
@@ -20,8 +20,8 @@ public class PublishMessageController {
             method = {RequestMethod.POST},
             produces = "application/json"
     )
-    public ResponseEntity<String> publish(@RequestBody String message) {
-        kafkaServiceProducer.sendMessage(message);
+    public ResponseEntity<String> publish(@RequestBody Order order) {
+        kafkaServiceProducer.sendMessage(order);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
