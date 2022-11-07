@@ -28,9 +28,6 @@ jobs:
     steps:
       - checkout
       
-      - save_cache:
-          paths:
-            - ~/.m2
 
       - setup_remote_docker:
           version: 20.10.12
