@@ -28,6 +28,9 @@ jobs:
     steps:
       - checkout
 
+      - setup_remote_docker:
+          version: 20.10.12
+
       # run tests!
       - run:
           command: mvn clean install
