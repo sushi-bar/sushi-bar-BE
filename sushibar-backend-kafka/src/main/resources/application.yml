@@ -10,7 +10,8 @@ spring:
     properties:
       schema.schema.registry.url: http://localhost:8081
 
-
+server:
+  shutdown: graceful
 
 
 
