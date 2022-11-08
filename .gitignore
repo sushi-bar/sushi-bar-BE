@@ -1,5 +1,7 @@
 target/
 .idea
+.circleci
+.mvn
 *.iml
 /sushibar-backend-kafka/src/main/resources/config/application.properties
 *.txt
