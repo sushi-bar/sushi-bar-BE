@@ -13,6 +13,8 @@ jobs:
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
     docker:
       - image: cimg/openjdk:11.0
+      - setup_remote_docker:
+          docker_layer_caching: true
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -23,6 +25,9 @@ jobs:
         #  name: Build
          # command: mvn -B -DskipTests clean package
       # Then run your tests!
+      - run:
+          name: Docker
+          command: docker compose up -d
       - run:
           name: Test
           command: mvn test
