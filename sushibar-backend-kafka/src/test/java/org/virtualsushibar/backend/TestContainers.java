@@ -21,7 +21,8 @@ public class TestContainers {
    static void beforeAll() {
 
         try (KafkaContainer kafka = new KafkaContainer
-                (DockerImageName.parse("confluentinc/cp-kafka:latest"))) {
+                (DockerImageName.parse("confluentinc/cp-kafka:latest"))
+                .withExposedPorts(2376)) {
             kafka.start();
             bootstrapServers = kafka.getBootstrapServers();
             log.info("bootstrap Server:{}",bootstrapServers);
