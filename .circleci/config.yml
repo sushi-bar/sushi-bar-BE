@@ -31,4 +31,4 @@ jobs:
 
       # build
       - run:
-          command: mvn -B clean install
+          command: mvn clean install -Dtarget.env=circleci
