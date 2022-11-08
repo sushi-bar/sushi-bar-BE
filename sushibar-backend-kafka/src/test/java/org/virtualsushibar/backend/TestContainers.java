@@ -24,8 +24,6 @@ public class TestContainers {
                 (DockerImageName.parse("confluentinc/cp-kafka:6.2.1"))) {
             kafka.start();
             bootstrapServers = kafka.getBootstrapServers();
-        } catch (Exception e) {
-            log.error(e.getMessage());
         }
     }
 }
