@@ -36,12 +36,16 @@
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>schema</goal>
-                            <goal>protocol</goal>
-                            <goal>idl-protocol</goal>
+                        <!--    <goal>protocol</goal>
+                            <goal>idl-protocol</goal>-->
                         </goals>
                         <configuration>
                             <sourceDirectory>${project.basedir}/src/main/resources/avro/</sourceDirectory>
                             <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+                            <imports>
+                                <import>${project.basedir}/src/main/resources/avro/MealCategory.avsc</import>
+                                <import>${project.basedir}/src/main/resources/avro/Order.avsc</import>
+                            </imports>
                         </configuration>
                     </execution>
                 </executions>

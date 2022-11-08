@@ -17,7 +17,6 @@ public class KafkaServiceProducer {
 
     private final KafkaTemplate<String, Order> kafkaTemplate;
     private final AbstractKafkaConfigs configs;
-
     public void sendMessage(Order order) {
         ListenableFuture<SendResult<String, Order>> listenableFuture = kafkaTemplate.send(configs.getTopic(), order);
         listenableFuture.addCallback(new ListenableFutureCallback<>() {

@@ -1,11 +1,28 @@
 {
-     "type": "record",
-     "namespace": "org.virtualsushibar.backend.avro",
-     "name": "Order",
-     "version": "1",
-     "fields": [
-        { "name": "id", "type": "string" },
-        { "name": "amount", "type": "int" },
-        { "name": "meal", "type": "string" }
-     ]
+
+  "type": "record",
+  "namespace": "org.virtualsushibar.backend.avro",
+  "name": "Order",
+  "version": "1",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "amount",
+      "type": "int"
+    },
+    {
+      "name": "meal",
+      "type": "string"
+    },
+    {
+      "name": "mealCategory",
+      "type": [
+        "null",
+        "org.virtualsushibar.backend.avro.MealCategory"
+      ]
+    }
+  ]
 }

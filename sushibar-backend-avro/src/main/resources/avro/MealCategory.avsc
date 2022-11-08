@@ -1,0 +1,7 @@
+{
+
+     "type": "enum",
+     "namespace": "org.virtualsushibar.backend.avro",
+     "name": "MealCategory",
+     "symbols" : [ "VEG", "NON_VEG", "EGG"]
+}
