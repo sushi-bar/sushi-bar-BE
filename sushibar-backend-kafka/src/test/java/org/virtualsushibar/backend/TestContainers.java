@@ -8,7 +8,7 @@ import org.testcontainers.utility.DockerImageName;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class TestContainers {
-    private static final DockerImageName KAFKA_TEST_IMAGE = DockerImageName.parse("confluentinc/cp-kafka:latest");
+    private static final DockerImageName KAFKA_TEST_IMAGE = DockerImageName.parse("confluentinc/cp-kafka");
     static String bootstrapServers;
 
     @Test
