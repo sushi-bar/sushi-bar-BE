@@ -10,7 +10,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @Slf4j
 public class TestContainers {
-    private String bootstrapServers;
+    private static String bootstrapServers;
 
     @Test
     void loadKafka() {
@@ -18,7 +18,7 @@ public class TestContainers {
     }
 
     @BeforeAll
-    void beforeAll() {
+   static void beforeAll() {
 
         try (KafkaContainer kafka = new KafkaContainer
                 (DockerImageName.parse("confluentinc/cp-kafka:6.2.1"))) {
