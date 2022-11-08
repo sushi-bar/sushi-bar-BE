@@ -10,23 +10,21 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @Slf4j
 public class TestContainers {
-    private static final DockerImageName KAFKA_TEST_IMAGE = DockerImageName.parse("confluentinc/cp-kafka:latest");
-    static String bootstrapServers;
+    private String bootstrapServers;
 
     @Test
-    void loadKafka(){
+    void loadKafka() {
         assertThat(bootstrapServers).isNotNull();
     }
 
     @BeforeAll
-    static void beforeAll() {
+    void beforeAll() {
 
-        try  {
-            KafkaContainer kafka = new KafkaContainer(KAFKA_TEST_IMAGE);
+        try (KafkaContainer kafka = new KafkaContainer
+                (DockerImageName.parse("confluentinc/cp-kafka:6.2.1"))) {
             kafka.start();
             bootstrapServers = kafka.getBootstrapServers();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
         }
     }
