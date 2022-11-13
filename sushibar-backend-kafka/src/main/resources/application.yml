@@ -11,6 +11,19 @@ spring:
       schema.schema.registry.url: http://localhost:8081
 
 
+### mongodb configuration ###
+  data:
+    mongodb:
+      #uri: "mongodb://root:rootpassword@localhost:27017/order?authSource=admin"
+      host: localhost
+      port: 27017
+      username: root
+      password: rootpassword
+      database: order
+      authentication-database: admin
+
+
+
 
 
 
