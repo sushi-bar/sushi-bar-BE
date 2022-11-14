@@ -9,19 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.virtualsushibar.backend.avro.Order;
-import org.virtualsushibar.backend.service.KafkaServiceProducer;
+import org.virtualsushibar.backend.kafka.producer.KafkaOrderProducer;
+import org.virtualsushibar.backend.service.OrderService;
+
 @RestController
 @RequestMapping("/v1/kafka/publish")
 @RequiredArgsConstructor
 @Slf4j
 public class PublishMessageController {
-    private final KafkaServiceProducer kafkaServiceProducer;
+    private final OrderService orderService;
     @RequestMapping(
             method = {RequestMethod.POST},
             produces = "application/json"
     )
     public ResponseEntity<String> publish(@RequestBody Order order) {
-        kafkaServiceProducer.sendMessage(order);
+        orderService.createOrder(order);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

@@ -1,4 +1,4 @@
-package org.virtualsushibar.backend.service;
+package org.virtualsushibar.backend.kafka.producer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,7 @@ import org.virtualsushibar.backend.kafka.config.AbstractKafkaConfigs;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class KafkaServiceProducer {
+public class KafkaOrderProducer {
 
 
     private final KafkaTemplate<String, Order> kafkaTemplate;
