@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.virtualsushibar.backend.avro.Order;
-import org.virtualsushibar.backend.kafka.producer.KafkaOrderProducer;
 import org.virtualsushibar.backend.service.OrderService;
 
 @RestController
