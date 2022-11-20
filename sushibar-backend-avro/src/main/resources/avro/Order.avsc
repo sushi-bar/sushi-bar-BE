@@ -4,7 +4,7 @@
      "name": "Order",
      "version": "1",
      "fields": [
-        { "name": "id", "type": "string" },
+        { "name": "orderId", "type": "string" },
         { "name": "amount", "type": "int" },
         { "name": "meal", "type": "string" }
      ]

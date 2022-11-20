@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface OrderRepository extends MongoRepository<OrderEntity, String> {
 
     Optional<OrderEntity> findByMeal(String meal);
+
 }
