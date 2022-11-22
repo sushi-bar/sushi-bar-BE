@@ -2,6 +2,7 @@ package org.virtualsushibar.backend.kafka.producer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.KafkaException;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class KafkaOrderProducer {
     private final KafkaTemplate<String, Order> kafkaTemplate;
     private final AbstractKafkaConfigs configs;
 
-    public void sendMessage(Order order) {
+    public void sendMessage(Order order) throws KafkaException {
         ListenableFuture<SendResult<String, Order>> listenableFuture = kafkaTemplate.send(configs.getTopic(), order);
         listenableFuture.addCallback(new ListenableFutureCallback<>() {
             @Override

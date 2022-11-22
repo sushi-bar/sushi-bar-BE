@@ -27,6 +27,7 @@ spring:
 
 
 
+
   #schema.registry.url: http://localhost:8081
 
 application:

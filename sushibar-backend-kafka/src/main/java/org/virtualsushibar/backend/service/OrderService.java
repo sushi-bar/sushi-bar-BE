@@ -2,6 +2,7 @@ package org.virtualsushibar.backend.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.KafkaException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.virtualsushibar.backend.avro.Order;
@@ -17,12 +18,12 @@ public class OrderService {
     private final KafkaOrderProducer kafkaOrderProducer;
 
     @Transactional
-    public void createOrder(Order order){
+    public void createOrder(Order order) {
         OrderEntity entity = OrderEntity.builder()
                 .meal(String.valueOf(order.getMeal()))
                 .build();
         orderRepository.save(entity);
         kafkaOrderProducer.sendMessage(order);
-        log.info("Order: {} sent", order.getId());
+        log.info("Order: {} sent", order.getOrderId());
     }
 }
