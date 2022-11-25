@@ -17,6 +17,7 @@ import org.virtualsushibar.backend.service.OrderService;
 @RequiredArgsConstructor
 @Slf4j
 public class PublishMessageController {
+
     private final OrderService orderService;
     @RequestMapping(
             method = {RequestMethod.POST},

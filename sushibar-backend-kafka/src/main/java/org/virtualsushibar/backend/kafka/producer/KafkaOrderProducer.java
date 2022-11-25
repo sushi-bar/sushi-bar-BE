@@ -14,8 +14,6 @@ import org.virtualsushibar.backend.kafka.config.AbstractKafkaConfigs;
 @Slf4j
 @RequiredArgsConstructor
 public class KafkaOrderProducer {
-
-
     private final KafkaTemplate<String, Order> kafkaTemplate;
     private final AbstractKafkaConfigs configs;
 
@@ -27,7 +25,6 @@ public class KafkaOrderProducer {
                 log.error("Error while publishing message: {}", order, ex);
 
             }
-
             @Override
             public void onSuccess(SendResult<String, Order> result) {
                 log.info("callback successful when publishing message: {}", order);
