@@ -27,7 +27,6 @@ public class KafkaOrderProducer {
                 log.error("Error while publishing message: {}", order, ex);
 
             }
-
             @Override
             public void onSuccess(SendResult<String, Order> result) {
                 log.info("callback successful when publishing message: {}", order);

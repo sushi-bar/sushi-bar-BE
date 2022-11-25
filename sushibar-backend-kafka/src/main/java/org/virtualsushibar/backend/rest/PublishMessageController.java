@@ -11,13 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.virtualsushibar.backend.avro.Order;
 import org.virtualsushibar.backend.service.OrderService;
+import org.virtualsushibar.backend.service.impl.OrderServiceImpl;
 
 @RestController
 @RequestMapping("/v1/kafka/publish")
 @RequiredArgsConstructor
 @Slf4j
 public class PublishMessageController {
-    private final OrderService orderService;
+
+    private final OrderServiceImpl orderService;
     @RequestMapping(
             method = {RequestMethod.POST},
             produces = "application/json"
