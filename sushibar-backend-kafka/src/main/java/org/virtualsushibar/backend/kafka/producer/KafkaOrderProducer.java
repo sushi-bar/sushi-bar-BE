@@ -14,8 +14,6 @@ import org.virtualsushibar.backend.kafka.config.AbstractKafkaConfigs;
 @Slf4j
 @RequiredArgsConstructor
 public class KafkaOrderProducer {
-
-
     private final KafkaTemplate<String, Order> kafkaTemplate;
     private final AbstractKafkaConfigs configs;
 
