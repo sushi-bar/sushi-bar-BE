@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "248e3728-65d9-4ef5-a9a0-80e9dbe6fb85",
+		"name": "sushi-bar-be",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/v1/kafka/publish",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"orderId\":3,\n\"amount\": 2,\n\"meal\": \"spaghetti\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/kafka/publish",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"kafka",
+						"publish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/config",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"compatibility\": \"NONE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/config",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"config"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8083/connectors",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"mongo-sink-connector\",\n      \"config\": {\n         \"connector.class\":\"com.mongodb.kafka.connect.MongoSinkConnector\",\n         \"connection.uri\":\"mongodb://root:rootpassword@mongodb_container\",\n         \"database\":\"order\",\n         \"collection\":\"sdp_order\",\n         \"topics\":\"orders\",\n         \"key.converter.schemas.enable\":\"true\",\n         \"value.converter.schemas.enable\": \"true\",\n     \"key.converter\":\"io.confluent.connect.avro.AvroConverter\",\n     \"key.converter.enhanced.avro.schema.support\":true,\t\n         \"key.converter.schema.registry.url\": \"http://schema-registry:8081\",\n          \"value.converter.schema.registry.url\": \"http://schema-registry:8081\",\n          \"value.converter.enhanced.avro.schema.support\":true,\n         \"value.converter\": \"io.confluent.connect.avro.AvroConverter\"\n         }\n     }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/connectors",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
