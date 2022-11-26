@@ -41,13 +41,27 @@ $ docker exec -it sushi-bar-be-kafka-1  bash (For Windows add winpty before dock
 $ /bin/kafka-topics --bootstrap-server localhost:29092 -topic order -create
 $ /bin/kafka-topics --list --bootstrap-server localhost:29092
 $ /bin/kafka-console-consumer --bootstrap-server localhost:29092 --topic orders --from-beginning
+```
 
-## For Kafka-Mongo Connector
-with Docker terminal on connect
-$ confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:latest
+## Kafka-Mongo Connector
+Connect to the docker kafka connector instance:
 
-POST request to  http://localhost:8083/connectors
- with JSON {"name": "mongo-sink-connector",
+```shell
+$ docker exec -it sushibar-backend-kafka_connect_1  bash
+```
+
+From the docker container install the kafka connector:
+```shell
+$ ./confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:latest
+```
+
+Configure the kafka connector for the specific topic with postman.
+
+* url: http://localhost:8083/connectors
+* method: POST
+* body:
+```json
+{"name": "mongo-sink-connector",
       "config": {
          "connector.class":"com.mongodb.kafka.connect.MongoSinkConnector",
          "connection.uri":"mongodb://root:rootpassword@mongodb_container",
@@ -64,9 +78,20 @@ POST request to  http://localhost:8083/connectors
          "value.converter": "io.confluent.connect.avro.AvroConverter"
          }
      }
-
-
 ```
+
+## Troubleshooting
+### Schema issue
+```shell
+org.apache.kafka.common.errors.InvalidConfigurationException: Schema being registered is incompatible with an earlier schema; error code: 409
+```
+#### workaround
+Set the compatibility mode of the topic to NONE.
+![compatibility](docs/compatibility-mode.png)
+
+
+
+
 ## Compass (MongoDB)
 ![Compass connection](docs/compass-connection.png)
 ![Compass data](docs/compass-data.png)
