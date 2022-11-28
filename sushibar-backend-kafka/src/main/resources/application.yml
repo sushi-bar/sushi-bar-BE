@@ -1,3 +1,4 @@
+## spring related properties
 spring:
   kafka:
     bootstrap-servers: localhost:29092
@@ -9,7 +10,6 @@ spring:
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
     properties:
       schema.schema.registry.url: http://localhost:8081
-
 
 ### mongodb configuration ###
   data:
@@ -25,11 +25,8 @@ spring:
 
 
 
-
-
-
-  #schema.registry.url: http://localhost:8081
-
+## application related properties
 application:
   topic:
     name: orders
+    partitions: 6

@@ -23,6 +23,7 @@ public class OrderServiceImpl implements OrderService {
     public void createOrder(Order order) {
         OrderEntity entity = OrderEntity.builder()
                 .meal(String.valueOf(order.getMeal()))
+                .amount(order.getAmount())
                 .build();
         orderRepository.save(entity);
         kafkaOrderProducer.sendMessage(order);
