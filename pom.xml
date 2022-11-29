@@ -20,7 +20,7 @@
         <avro.version>1.11.1</avro.version>
         <confluent.version>5.5.5</confluent.version>
         <confluent.serializer.version>6.1.0</confluent.serializer.version>
-        <testcontainers.version>1.17.5</testcontainers.version>
+        <testcontainers.version>1.17.6</testcontainers.version>
     </properties>
 
     <dependencyManagement>
@@ -52,10 +52,15 @@
                 <version>${confluent.serializer.version}</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.testcontainers/kafka -->
             <dependency>
                 <groupId>org.testcontainers</groupId>
                 <artifactId>kafka</artifactId>
+                <version>${testcontainers.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>mongodb</artifactId>
                 <version>${testcontainers.version}</version>
             </dependency>
 

@@ -10,4 +10,5 @@ public class OrderEntity {
     @Id
     public String id;
     public String meal;
+    public int amount;
 }

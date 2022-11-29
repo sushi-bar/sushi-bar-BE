@@ -37,8 +37,7 @@ $ docker compose down
 Connecting to the docker container
 ```shell
 
-$ docker exec -it sushi-bar-be-kafka-1  bash (For Windows add winpty before docker)
-$ /bin/kafka-topics --bootstrap-server localhost:29092 -topic order -create
+$ docker exec -it sushibar-backend-kafka_kafka_1  bash (For Windows add winpty before docker)
 $ /bin/kafka-topics --list --bootstrap-server localhost:29092
 $ /bin/kafka-console-consumer --bootstrap-server localhost:29092 --topic orders --from-beginning
 ```
