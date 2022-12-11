@@ -1,36 +1,35 @@
-package org.virtualsushibar.backend.rest;
+package org.virtualsushibar.backend.api.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.KafkaException;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.virtualsushibar.backend.avro.Order;
+import org.virtualsushibar.backend.api.dto.OrderRequest;
+
+import org.virtualsushibar.backend.api.dto.OrderResponse;
 import org.virtualsushibar.backend.service.OrderService;
 
 @RestController
-@RequestMapping("/v1/kafka/publish")
+@RequestMapping("/v1/order")
 @RequiredArgsConstructor
 @Slf4j
-public class PublishMessageController {
+public class OrderController {
 
     private final OrderService orderService;
     @RequestMapping(
             method = {RequestMethod.POST},
             produces = "application/json"
     )
-    public ResponseEntity<String> publish(@RequestBody Order order) {
-        try {
-            orderService.createOrder(order);
-        }
-        catch (KafkaException e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<OrderResponse> publish(@RequestBody OrderRequest order) {
+        String confirmationOrder = orderService.createOrder(order.getMeal());
+        OrderResponse orderResponse = OrderResponse.builder()
+                .orderConfirmationID(confirmationOrder)
+                .build();
+        return new ResponseEntity<>(orderResponse, HttpStatus.CREATED);
     }
 }
