@@ -1,4 +1,4 @@
-package org.virtualsushibar.backend.service.impl;
+package org.virtualsushibar.backend.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,6 @@ import org.virtualsushibar.backend.avro.Order;
 import org.virtualsushibar.backend.dao.entity.OrderEntity;
 import org.virtualsushibar.backend.dao.repository.OrderRepository;
 import org.virtualsushibar.backend.kafka.producer.KafkaOrderProducer;
-import org.virtualsushibar.backend.service.OrderService;
 
 import java.util.UUID;
 
