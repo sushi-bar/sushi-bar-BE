@@ -9,7 +9,7 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
     properties:
-      schema.schema.registry.url: http://localhost:8081
+      schema.registry.url: http://localhost:8081
 
 ### mongodb configuration ###
   data:
@@ -28,5 +28,9 @@ spring:
 ## application related properties
 application:
   topic:
-    name: orders
-    partitions: 6
+    producer:
+     name: orders
+     partitions: 6
+    consumer:
+      name: orders
+      partitions: 6

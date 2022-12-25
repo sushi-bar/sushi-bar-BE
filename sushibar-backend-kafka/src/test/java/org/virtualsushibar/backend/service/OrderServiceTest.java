@@ -9,7 +9,7 @@ import org.virtualsushibar.backend.api.Meals;
 import org.virtualsushibar.backend.avro.Order;
 import org.virtualsushibar.backend.dao.entity.OrderEntity;
 import org.virtualsushibar.backend.dao.repository.OrderRepository;
-import org.virtualsushibar.backend.kafka.producer.KafkaOrderProducer;
+import org.virtualsushibar.backend.kafka.producer.order.KafkaOrderProducer;
 
 import java.util.UUID;
 

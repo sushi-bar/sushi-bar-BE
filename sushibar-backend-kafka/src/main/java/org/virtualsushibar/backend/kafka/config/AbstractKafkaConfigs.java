@@ -8,12 +8,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AbstractKafkaConfigs {
 
-    public AbstractKafkaConfigs(@Value(value = "${application.topic.name}") String topic,
+    public AbstractKafkaConfigs(@Value(value = "${application.topic.producer.name}") String producerTopic,
+                                @Value(value = "${application.topic.consumer.name}") String consumerTopic,
                                 @Value(value = "${spring.kafka.bootstrap-servers}") String bootstrapAddress) {
-        this.topic = topic;
+        this.producerTopic = producerTopic;
+        this.consumerTopic=consumerTopic;
         this.bootstrapAddress = bootstrapAddress;
     }
 
-    private final String topic;
+    private final String producerTopic;
+    private final String consumerTopic;
     private final String bootstrapAddress;
 }
