@@ -29,7 +29,7 @@ spring:
 application:
   topic:
     producer:
-      name: orders
+      name: processed-orders
       partitions: 6
     consumer:
       name: orders

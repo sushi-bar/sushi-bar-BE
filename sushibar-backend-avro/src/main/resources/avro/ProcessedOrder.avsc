@@ -1,0 +1,12 @@
+{
+     "type": "record",
+     "namespace": "org.virtualsushibar.backend.avro",
+     "name": "ProcessedOrder",
+     "version": "1",
+     "fields": [
+        { "name": "orderId", "type": "string" },
+        { "name": "orderStatus", "type":"OrderStatus" },
+        { "name": "cookId", "type": "string" },
+        { "name": "timeTaken", "type": "string"}
+     ]
+}
