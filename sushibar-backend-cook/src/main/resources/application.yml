@@ -11,7 +11,7 @@ spring:
     properties:
       schema.registry.url: http://localhost:8081
 
-### mongodb configuration ###
+  ### mongodb configuration ###
   data:
     mongodb:
       #uri: "mongodb://root:rootpassword@localhost:27017/order?authSource=admin"
@@ -29,8 +29,8 @@ spring:
 application:
   topic:
     producer:
-     name: orders
-     partitions: 6
-    consumer:
       name: processed-orders
+      partitions: 6
+    consumer:
+      name: orders
       partitions: 6

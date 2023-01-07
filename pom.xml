@@ -123,5 +123,8 @@
     <modules>
         <module>sushibar-backend-avro</module>
         <module>sushibar-backend-kafka</module>
+        <module>sushibar-backend-cook</module>
+
+
     </modules>
 </project>

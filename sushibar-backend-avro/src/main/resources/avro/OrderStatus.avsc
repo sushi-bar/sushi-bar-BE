@@ -1,0 +1,6 @@
+{
+  "type": "enum",
+  "namespace": "org.virtualsushibar.backend.avro",
+  "name": "OrderStatus",
+  "symbols" : ["STARTED", "IN_PROGRESS", "COMPLETED","REJECTED"]
+}
