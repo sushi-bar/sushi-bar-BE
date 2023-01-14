@@ -1,4 +1,4 @@
-package org.virtualsushibar.backend.kafka.config;
+package org.virtualsushibar.backend.cook.kafka.config;
 
 
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;

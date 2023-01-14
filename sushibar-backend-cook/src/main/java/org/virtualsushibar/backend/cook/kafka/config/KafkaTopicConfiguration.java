@@ -1,4 +1,4 @@
-package org.virtualsushibar.backend.kafka.config;
+package org.virtualsushibar.backend.cook.kafka.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Value;

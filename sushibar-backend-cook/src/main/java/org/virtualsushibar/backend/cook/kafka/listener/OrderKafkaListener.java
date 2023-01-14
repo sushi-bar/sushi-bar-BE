@@ -1,4 +1,4 @@
-package org.virtualsushibar.backend.kafka.listener;
+package org.virtualsushibar.backend.cook.kafka.listener;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

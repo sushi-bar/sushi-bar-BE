@@ -1,4 +1,4 @@
-package org.virtualsushibar.backend.kafka.producer;
+package org.virtualsushibar.backend.cook.kafka.producer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
