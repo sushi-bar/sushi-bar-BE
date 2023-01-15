@@ -23,6 +23,12 @@
         <testcontainers.version>1.17.6</testcontainers.version>
     </properties>
 
+    <modules>
+        <module>sushibar-backend-avro</module>
+        <module>sushibar-backend-app</module>
+        <module>sushibar-backend-cook</module>
+    </modules>
+
     <dependencyManagement>
         <dependencies>
 
@@ -120,11 +126,5 @@
         </pluginRepository>
     </pluginRepositories>
 
-    <modules>
-        <module>sushibar-backend-avro</module>
-        <module>sushibar-backend-app</module>
-        <module>sushibar-backend-cook</module>
 
-
-    </modules>
 </project>
