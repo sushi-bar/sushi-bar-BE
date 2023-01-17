@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.sushibar.backend</groupId>
 		<artifactId>sushibar-backend-parent</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>sushibar-backend-app</artifactId>
 	<packaging>jar</packaging>

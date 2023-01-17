@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.sushibar.backend</groupId>
     <artifactId>sushibar-backend-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>SushiBar Backend Parent</name>
     <description>Parent POM for the SushiBar Backend</description>
     <organization>
@@ -24,7 +24,7 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/sushi-bar/sushi-bar-BE.git</developerConnection>
-      <tag>sushibar-backend-parent-1.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <modules>
