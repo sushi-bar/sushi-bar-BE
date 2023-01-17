@@ -23,6 +23,10 @@
         <testcontainers.version>1.17.6</testcontainers.version>
     </properties>
 
+    <scm>
+        <developerConnection>scm:git:https://github.com/sushi-bar/sushi-bar-BE.git</developerConnection>
+    </scm>
+
     <modules>
         <module>sushibar-backend-avro</module>
         <module>sushibar-backend-app</module>
