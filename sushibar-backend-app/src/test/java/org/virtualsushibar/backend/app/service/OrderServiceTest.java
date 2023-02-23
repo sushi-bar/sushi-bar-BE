@@ -6,10 +6,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.virtualsushibar.backend.app.api.Meals;
-import org.virtualsushibar.backend.avro.Order;
 import org.virtualsushibar.backend.app.dao.entity.OrderEntity;
 import org.virtualsushibar.backend.app.dao.repository.OrderRepository;
 import org.virtualsushibar.backend.app.kafka.producer.order.KafkaOrderProducer;
+import org.virtualsushibar.backend.avro.Order;
 
 import java.util.UUID;
 

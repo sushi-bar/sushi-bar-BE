@@ -10,7 +10,16 @@
         </encoder>
     </appender>
 
+    <logger name="org.virtualsushibar.backend.cook" level="DEBUG" additivity="false" >
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
     <root level="error">
         <appender-ref ref="CONSOLE" />
     </root>
+
 </configuration>

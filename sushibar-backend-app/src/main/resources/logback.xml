@@ -9,11 +9,11 @@
         </encoder>
     </appender>
 
-    <logger name="org.virtualsushibar.backend.app" level="INFO" >
+    <logger name="org.virtualsushibar.backend.app" level="DEBUG" additivity="false" >
         <appender-ref ref="CONSOLE" />
     </logger>
 
-    <logger name="org.springframework" level="INFO" >
+    <logger name="org.springframework" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE" />
     </logger>
 

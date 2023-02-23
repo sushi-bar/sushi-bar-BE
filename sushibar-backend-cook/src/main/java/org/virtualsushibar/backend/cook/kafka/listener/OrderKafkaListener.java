@@ -6,7 +6,6 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
 import org.virtualsushibar.backend.avro.Order;
-import org.virtualsushibar.backend.avro.ProcessedOrder;
 
 
 @Slf4j

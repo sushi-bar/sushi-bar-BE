@@ -8,6 +8,8 @@ spring:
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      properties:
+        specific.avro.reader: true
     properties:
       schema.registry.url: http://localhost:8081
 
@@ -34,3 +36,6 @@ application:
     consumer:
       name: orders
       partitions: 6
+
+server:
+  port: 8090

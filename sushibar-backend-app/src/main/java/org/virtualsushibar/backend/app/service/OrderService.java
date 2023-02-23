@@ -5,10 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.virtualsushibar.backend.app.api.Meals;
-import org.virtualsushibar.backend.avro.Order;
 import org.virtualsushibar.backend.app.dao.entity.OrderEntity;
 import org.virtualsushibar.backend.app.dao.repository.OrderRepository;
 import org.virtualsushibar.backend.app.kafka.producer.order.KafkaOrderProducer;
+import org.virtualsushibar.backend.avro.Order;
 
 import java.util.UUID;
 
