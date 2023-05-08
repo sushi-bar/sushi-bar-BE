@@ -11,7 +11,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.virtualsushibar.backend.app.dao.entity.OrderEntity;
+import org.virtualsushibar.backend.app.dao.document.OrderDocument;
 
 import javax.annotation.Resource;
 
@@ -38,7 +38,7 @@ class OrderRepositoryTest {
     @Test
     void findByMeal() {
         //when
-        OrderEntity order = orderRepository.findByMeal("pizza").orElseThrow(RuntimeException::new);
+        OrderDocument order = orderRepository.findByMeal("pizza").orElseThrow(RuntimeException::new);
 
         //then
         assertThat(order).isNotNull();
@@ -54,10 +54,10 @@ class OrderRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        OrderEntity orderEntity = OrderEntity.builder()
+        OrderDocument orderDocument = OrderDocument.builder()
                 .id("1")
                 .meal("pizza")
                 .build();
-        this.orderRepository.save(orderEntity);
+        this.orderRepository.save(orderDocument);
     }
 }

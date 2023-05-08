@@ -5,9 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.virtualsushibar.backend.app.api.Meals;
-import org.virtualsushibar.backend.app.dao.entity.OrderEntity;
+import org.virtualsushibar.backend.app.dao.document.OrderDocument;
 import org.virtualsushibar.backend.app.dao.repository.OrderRepository;
-import org.virtualsushibar.backend.app.kafka.producer.order.KafkaOrderProducer;
+import org.virtualsushibar.backend.app.kafka.producer.KafkaProducer;
 import org.virtualsushibar.backend.avro.Order;
 
 import java.util.UUID;
@@ -19,23 +19,26 @@ import java.util.UUID;
 public class OrderService  {
     public static final int DEFAULT_AMOUNT = 1;
     private final OrderRepository orderRepository;
-    private final KafkaOrderProducer kafkaOrderProducer;
+    private final KafkaProducer kafkaOrderProducer;
 
 
     @Transactional
     public String createOrder(Meals meal) {
+        UUID uuid = UUID.randomUUID();
         Order order = Order.newBuilder()
                 .setAmount(DEFAULT_AMOUNT)
                 .setMeal(meal.name())
-                .setOrderId(UUID.randomUUID().toString())
+                .setOrderId(uuid.toString())
                 .build();
 
-        OrderEntity entity = OrderEntity.builder()
+        OrderDocument document = OrderDocument.builder()
                 .meal(String.valueOf(meal))
                 .amount(DEFAULT_AMOUNT)
-                .id(order.getOrderId().toString())
+                .orderId(uuid.toString())
                 .build();
-        orderRepository.save(entity);
+
+        OrderDocument save = orderRepository.save(document);
+        log.info("Order saved in mongoDB with id: {}", save.getId());
         kafkaOrderProducer.sendMessage(order);
         log.info("Order: {} sent", order.getOrderId());
         return order.getOrderId().toString();
