@@ -14,7 +14,7 @@ public class KafkaTopicConfiguration {
                                         @Value(value = "${application.topic.partitions:1}") int numberOfPartitions) {
         return TopicBuilder.name(topic)
                 .partitions(numberOfPartitions)
-                .replicas(3)
+                .replicas(1)
                 .compact()
                 .build();
     }
