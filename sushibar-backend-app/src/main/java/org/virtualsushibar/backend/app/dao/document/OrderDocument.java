@@ -14,4 +14,5 @@ public class OrderDocument {
     private String orderId;
     private String meal;
     private int amount;
+    private OrderStatus orderStatus;
 }

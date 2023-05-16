@@ -6,11 +6,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.virtualsushibar.backend.app.api.Meals;
 import org.virtualsushibar.backend.app.dao.document.OrderDocument;
+import org.virtualsushibar.backend.app.dao.document.OrderStatus;
 import org.virtualsushibar.backend.app.dao.repository.OrderRepository;
 import org.virtualsushibar.backend.app.kafka.producer.KafkaProducer;
 import org.virtualsushibar.backend.avro.Order;
 
 import java.util.UUID;
+
+import static org.virtualsushibar.backend.app.dao.document.OrderStatus.ORDER_NOT_CONFIRMED;
 
 
 @RequiredArgsConstructor
@@ -35,6 +38,7 @@ public class OrderService  {
                 .meal(String.valueOf(meal))
                 .amount(DEFAULT_AMOUNT)
                 .orderId(uuid.toString())
+                .orderStatus(ORDER_NOT_CONFIRMED)
                 .build();
 
         OrderDocument save = orderRepository.save(document);

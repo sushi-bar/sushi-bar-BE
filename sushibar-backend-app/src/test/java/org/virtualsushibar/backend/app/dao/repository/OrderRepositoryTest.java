@@ -12,6 +12,7 @@ import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.virtualsushibar.backend.app.dao.document.OrderDocument;
+import org.virtualsushibar.backend.app.dao.document.OrderStatus;
 
 import javax.annotation.Resource;
 
@@ -36,14 +37,13 @@ class OrderRepositoryTest {
     private OrderRepository orderRepository;
 
     @Test
-    void findByMeal() {
+    void findByOrderId() {
         //when
-        OrderDocument order = orderRepository.findByMeal("pizza").orElseThrow(RuntimeException::new);
+        OrderDocument order = orderRepository.findByOrderId("1").orElseThrow(RuntimeException::new);
 
         //then
         assertThat(order).isNotNull();
         assertThat(order.getMeal()).isEqualTo("pizza");
-        assertThat(order.getId()).isEqualTo("1");
     }
 
 
@@ -55,8 +55,9 @@ class OrderRepositoryTest {
     @BeforeEach
     void setUp() {
         OrderDocument orderDocument = OrderDocument.builder()
-                .id("1")
+                .orderId("1")
                 .meal("pizza")
+                .orderStatus(OrderStatus.ORDER_CONFIRMED)
                 .build();
         this.orderRepository.save(orderDocument);
     }
