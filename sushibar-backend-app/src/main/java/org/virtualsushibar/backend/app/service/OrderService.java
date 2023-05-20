@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.virtualsushibar.backend.app.api.Meals;
 import org.virtualsushibar.backend.app.dao.document.OrderDocument;
-import org.virtualsushibar.backend.app.dao.document.OrderStatus;
 import org.virtualsushibar.backend.app.dao.repository.OrderRepository;
 import org.virtualsushibar.backend.app.kafka.producer.KafkaProducer;
 import org.virtualsushibar.backend.avro.Order;
@@ -45,6 +44,6 @@ public class OrderService  {
         log.info("Order saved in mongoDB with id: {}", save.getId());
         kafkaOrderProducer.sendMessage(order);
         log.info("Order: {} sent", order.getOrderId());
-        return order.getOrderId().toString();
+        return order.getOrderId();
     }
 }

@@ -21,6 +21,7 @@
         <confluent.version>5.5.5</confluent.version>
         <confluent.serializer.version>6.1.0</confluent.serializer.version>
         <testcontainers.version>1.17.6</testcontainers.version>
+        <sushibar-backend-avro.version>1.0.1-SNAPSHOT</sushibar-backend-avro.version>
     </properties>
 
     <modules>
@@ -43,7 +44,7 @@
             <dependency>
                 <groupId>org.sushibar.backend</groupId>
                 <artifactId>sushibar-backend-avro</artifactId>
-                <version>${project.version}</version>
+                <version>${sushibar-backend-avro.version}</version>
             </dependency>
 
             <dependency>
@@ -83,8 +84,14 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
+                    <version>3.11.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>io.confluent</groupId>
+                    <artifactId>kafka-schema-registry-maven-plugin</artifactId>
+                    <version>${confluent.version}</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
@@ -102,14 +109,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-        </plugins>
     </build>
     <repositories>
         <repository>
