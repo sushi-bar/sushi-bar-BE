@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface OrderRepository extends MongoRepository<OrderDocument, String> {
 
-    Optional<OrderDocument> findByMeal(String meal);
+    Optional<OrderDocument> findByOrderId(String orderId);
 
 }

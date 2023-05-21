@@ -4,5 +4,4 @@ target/
 /sushibar-backend-kafka/src/main/resources/config/application.properties
 *.txt
 
-
-/sushibar-backend-avro/src/main/java/
+/sushibar-backend-avro/generated-sources/

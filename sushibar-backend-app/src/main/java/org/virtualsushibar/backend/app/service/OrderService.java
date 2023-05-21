@@ -12,6 +12,8 @@ import org.virtualsushibar.backend.avro.Order;
 
 import java.util.UUID;
 
+import static org.virtualsushibar.backend.app.dao.document.OrderStatus.ORDER_NOT_CONFIRMED;
+
 
 @RequiredArgsConstructor
 @Slf4j
@@ -35,12 +37,13 @@ public class OrderService  {
                 .meal(String.valueOf(meal))
                 .amount(DEFAULT_AMOUNT)
                 .orderId(uuid.toString())
+                .orderStatus(ORDER_NOT_CONFIRMED)
                 .build();
 
         OrderDocument save = orderRepository.save(document);
         log.info("Order saved in mongoDB with id: {}", save.getId());
         kafkaOrderProducer.sendMessage(order);
         log.info("Order: {} sent", order.getOrderId());
-        return order.getOrderId().toString();
+        return order.getOrderId();
     }
 }

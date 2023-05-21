@@ -9,6 +9,7 @@
     </parent>
     <artifactId>sushibar-backend-avro</artifactId>
     <packaging>jar</packaging>
+    <version>1.0.1-SNAPSHOT</version>
     <name>Sushibar Backend Avro Schema</name>
     <description>The Avro schema definitions</description>
     <properties>
@@ -31,6 +32,10 @@
             <plugin>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-maven-plugin</artifactId>
+                <configuration>
+                    <stringType>String</stringType>
+                </configuration>
+
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -39,37 +44,13 @@
                         </goals>
                         <configuration>
                             <sourceDirectory>${project.basedir}/src/main/resources/avro/</sourceDirectory>
-                            <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+                            <outputDirectory>${project.basedir}/generated-sources/avro/</outputDirectory>
                             <imports>
                                 <import>${project.basedir}/src/main/resources/avro/OrderStatus.avsc</import>
                              </imports>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>io.confluent</groupId>
-                <artifactId>kafka-schema-registry-maven-plugin</artifactId>
-                <version>${confluent.version}</version>
-                <configuration>
-                    <schemaRegistryUrls>
-                        <param>http://localhost:8081</param>
-                    </schemaRegistryUrls>
-                    <subjects>
-                        <send-payment-value>${project.basedir}/src/main/resources/avro/Order.avsc</send-payment-value>
-                        <send-payment-value>${project.basedir}/src/main/resources/avro/ProcessedOrder.avsc</send-payment-value>
-                    </subjects>
-                    <outputDirectory/>
-                </configuration>
-                <goals>
-                    <goal>register</goal>
-                </goals>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
