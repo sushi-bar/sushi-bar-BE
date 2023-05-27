@@ -11,10 +11,6 @@
     <packaging>jar</packaging>
     <name>Sushibar Backend Avro Schema</name>
     <description>The Avro schema definitions</description>
-    <properties>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-    </properties>
 
     <dependencies>
         <dependency>
