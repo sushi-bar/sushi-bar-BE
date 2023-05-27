@@ -15,7 +15,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>19</java.version>
+        <java.version>17</java.version>
         <spring.boot.version>3.1.0</spring.boot.version>
         <avro.version>1.11.1</avro.version>
         <confluent.version>5.5.5</confluent.version>
@@ -23,6 +23,9 @@
         <testcontainers.version>1.18.1</testcontainers.version>
         <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <modules>
