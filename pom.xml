@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.sushibar.backend</groupId>
     <artifactId>sushibar-backend-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>SushiBar Backend Parent</name>
     <description>Parent POM for the SushiBar Backend</description>
     <organization>
@@ -16,12 +16,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
-        <spring.boot.version>2.7.5</spring.boot.version>
+        <spring.boot.version>3.1.0</spring.boot.version>
         <avro.version>1.11.1</avro.version>
         <confluent.version>5.5.5</confluent.version>
-        <confluent.serializer.version>6.1.0</confluent.serializer.version>
-        <testcontainers.version>1.17.6</testcontainers.version>
-        <sushibar-backend-avro.version>1.0.1-SNAPSHOT</sushibar-backend-avro.version>
+        <confluent.serializer.version>7.4.0</confluent.serializer.version>
+        <testcontainers.version>1.18.1</testcontainers.version>
+        <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     </properties>
 
     <modules>
@@ -42,9 +43,15 @@
             </dependency>
 
             <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${springfox-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.sushibar.backend</groupId>
                 <artifactId>sushibar-backend-avro</artifactId>
-                <version>${sushibar-backend-avro.version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
@@ -83,30 +90,25 @@
     <build>
         <pluginManagement>
             <plugins>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.11.0</version>
+                    <version>${maven-compiler-plugin.version}</version>
                 </plugin>
-                <plugin>
-                    <groupId>io.confluent</groupId>
-                    <artifactId>kafka-schema-registry-maven-plugin</artifactId>
-                    <version>${confluent.version}</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.2</version>
-                </plugin>
+
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring.boot.version}</version>
                 </plugin>
+
                 <plugin>
                     <groupId>org.apache.avro</groupId>
                     <artifactId>avro-maven-plugin</artifactId>
                     <version>${avro.version}</version>
                 </plugin>
+
             </plugins>
         </pluginManagement>
     </build>

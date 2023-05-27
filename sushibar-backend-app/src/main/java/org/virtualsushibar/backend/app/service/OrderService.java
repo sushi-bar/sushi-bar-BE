@@ -18,7 +18,7 @@ import static org.virtualsushibar.backend.app.dao.document.OrderStatus.ORDER_NOT
 @RequiredArgsConstructor
 @Slf4j
 @Service
-public class OrderService  {
+public class OrderService {
     public static final int DEFAULT_AMOUNT = 1;
     private final OrderRepository orderRepository;
     private final KafkaProducer kafkaOrderProducer;

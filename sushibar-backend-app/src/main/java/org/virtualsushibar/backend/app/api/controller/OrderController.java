@@ -20,6 +20,7 @@ public class OrderController {
     static final String URL = "/v1/order";
 
     private final OrderService orderService;
+
     @RequestMapping(
             method = {RequestMethod.POST},
             produces = "application/json"
