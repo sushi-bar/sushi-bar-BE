@@ -45,6 +45,6 @@ class OrderServiceTest {
 
     @BeforeEach
     void setUp() {
-        this.orderService=new OrderService(orderRepository, kafkaOrderProducer);
+        this.orderService = new OrderService(orderRepository, kafkaOrderProducer);
     }
 }

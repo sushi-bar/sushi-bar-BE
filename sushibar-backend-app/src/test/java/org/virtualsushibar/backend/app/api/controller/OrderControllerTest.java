@@ -2,6 +2,7 @@ package org.virtualsushibar.backend.app.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -11,8 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.virtualsushibar.backend.app.api.Meals;
 import org.virtualsushibar.backend.app.api.dto.OrderRequest;
 import org.virtualsushibar.backend.app.service.OrderService;
-
-import javax.annotation.Resource;
 
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -24,10 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class OrderControllerTest {
 
 
-    @Resource
+    @Autowired
     private MockMvc mockMvc;
 
-    @Resource
+    @Autowired
     private ObjectMapper objectMapper;
 
     @MockBean
@@ -44,7 +43,7 @@ class OrderControllerTest {
         verify(orderService).createOrder(Meals.PIZZA);
     }
 
-    private OrderRequest orderRequest(){
+    private OrderRequest orderRequest() {
         return OrderRequest.builder()
                 .meal(Meals.PIZZA)
                 .build();

@@ -13,9 +13,9 @@ import org.virtualsushibar.backend.avro.Order;
 @RequiredArgsConstructor
 public class OrderKafkaListener {
 
-    @KafkaListener(topics = "${application.topic.consumer.name}",groupId = "sb-order-main")
-    public void kafkaListener(Order order, Acknowledgment acknowledgment){
-        log.info("Message Received:{}",order);
+    @KafkaListener(topics = "${application.topic.consumer.name}", groupId = "sb-order-main")
+    public void kafkaListener(Order order, Acknowledgment acknowledgment) {
+        log.info("Message Received:{}", order);
 
 
         /*

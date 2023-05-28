@@ -12,5 +12,5 @@ import org.virtualsushibar.backend.app.api.Meals;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderRequest {
-    private  Meals meal;
+    private Meals meal;
 }

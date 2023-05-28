@@ -14,7 +14,7 @@ public class RestAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Message> genericError(Exception e) {
-        log.error("Unexpected error",e);
+        log.error("Unexpected error", e);
         Message message = Message.builder()
                 .mgs("Unexpected error: \n" + e.toString())
                 .build();

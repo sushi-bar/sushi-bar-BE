@@ -5,20 +5,12 @@
     <parent>
         <groupId>org.sushibar.backend</groupId>
         <artifactId>sushibar-backend-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>sushibar-backend-avro</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1-SNAPSHOT</version>
     <name>Sushibar Backend Avro Schema</name>
     <description>The Avro schema definitions</description>
-    <properties>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <java.version>11</java.version>
-    </properties>
-
-
 
     <dependencies>
         <dependency>
@@ -35,7 +27,6 @@
                 <configuration>
                     <stringType>String</stringType>
                 </configuration>
-
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -47,7 +38,7 @@
                             <outputDirectory>${project.basedir}/generated-sources/avro/</outputDirectory>
                             <imports>
                                 <import>${project.basedir}/src/main/resources/avro/OrderStatus.avsc</import>
-                             </imports>
+                            </imports>
                         </configuration>
                     </execution>
                 </executions>
