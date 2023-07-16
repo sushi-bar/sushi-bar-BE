@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.virtualsushibar.backend.app.api.Meals;
 import org.virtualsushibar.backend.app.api.dto.OrderRequest;
+import org.virtualsushibar.backend.app.service.CircuitBreakerOrderService;
 import org.virtualsushibar.backend.app.service.OrderService;
 
 import static org.mockito.Mockito.verify;
@@ -30,7 +31,7 @@ class OrderControllerTest {
     private ObjectMapper objectMapper;
 
     @MockBean
-    private OrderService orderService;
+    private CircuitBreakerOrderService orderService;
 
     @Test
     void createOrder() throws Exception {

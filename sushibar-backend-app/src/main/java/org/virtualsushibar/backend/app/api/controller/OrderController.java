@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.virtualsushibar.backend.app.api.dto.OrderRequest;
 import org.virtualsushibar.backend.app.api.dto.OrderResponse;
-import org.virtualsushibar.backend.app.service.OrderService;
+import org.virtualsushibar.backend.app.service.CircuitBreakerOrderService;
 
 @RestController
 @RequestMapping(OrderController.URL)
@@ -19,7 +19,7 @@ import org.virtualsushibar.backend.app.service.OrderService;
 public class OrderController {
     static final String URL = "/v1/order";
 
-    private final OrderService orderService;
+    private final CircuitBreakerOrderService orderService;
 
     @RequestMapping(
             method = {RequestMethod.POST},
