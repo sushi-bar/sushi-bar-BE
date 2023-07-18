@@ -20,6 +20,7 @@
         <avro.version>1.11.1</avro.version>
         <confluent.version>5.5.5</confluent.version>
         <confluent.serializer.version>7.4.0</confluent.serializer.version>
+        <spring-cloud-resilience4j.version>3.0.2</spring-cloud-resilience4j.version>
         <testcontainers.version>1.18.1</testcontainers.version>
         <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
@@ -64,6 +65,12 @@
                 <groupId>io.confluent</groupId>
                 <artifactId>kafka-avro-serializer</artifactId>
                 <version>${confluent.serializer.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+                <version>${spring-cloud-resilience4j.version}</version>
             </dependency>
 
             <dependency>
