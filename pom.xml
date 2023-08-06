@@ -23,6 +23,7 @@
         <spring-cloud-resilience4j.version>3.0.2</spring-cloud-resilience4j.version>
         <testcontainers.version>1.18.1</testcontainers.version>
         <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
+        <springdoc-openapi.version>2.0.3</springdoc-openapi.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     </properties>
 
@@ -71,6 +72,12 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
                 <version>${spring-cloud-resilience4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc-openapi.version}</version>
             </dependency>
 
             <dependency>
