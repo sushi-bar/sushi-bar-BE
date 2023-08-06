@@ -100,6 +100,9 @@ Set the compatibility mode of the topic to NONE.
 
 [Baeldung Kafka](https://www.baeldung.com/ops/kafka-docker-setup)
 
+### OpenAPI (backend app)
+http://localhost:8080/swagger-ui/index.html
+
 
 # Original Requirement (italian)
 
