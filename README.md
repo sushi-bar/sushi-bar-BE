@@ -27,7 +27,6 @@ Based on Apache Kafka & spring boot.
 Starting Kafka
 ```shell
 $ docker compose up -d
-
 ```
 
 Stopping Kafka
@@ -37,7 +36,7 @@ $ docker compose down
 Connecting to the docker container
 ```shell
 
-$ docker exec -it sushibar-backend-kafka_kafka_1  bash (For Windows add winpty before docker)
+$ docker exec -it  sushibar-backend-app-kafka-1 bash (For Windows add winpty before docker)
 $ /bin/kafka-topics --list --bootstrap-server localhost:29092
 $ /bin/kafka-console-consumer --bootstrap-server localhost:29092 --topic orders --from-beginning
 ```
