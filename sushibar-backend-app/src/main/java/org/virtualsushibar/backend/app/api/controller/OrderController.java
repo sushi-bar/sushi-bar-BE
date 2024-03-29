@@ -26,7 +26,7 @@ public class OrderController {
             produces = "application/json"
     )
     public ResponseEntity<OrderResponse> createOrder(@RequestBody OrderRequest order) {
-        String confirmationOrder = orderService.createOrder(order.getMeal());
+        String confirmationOrder = orderService.createOrder(order.meal());
         OrderResponse orderResponse = OrderResponse.builder()
                 .orderConfirmationID(confirmationOrder)
                 .build();
