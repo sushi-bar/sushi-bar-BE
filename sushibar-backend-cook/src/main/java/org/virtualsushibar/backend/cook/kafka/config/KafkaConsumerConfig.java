@@ -15,25 +15,25 @@ import org.virtualsushibar.backend.avro.Order;
 @RequiredArgsConstructor
 public class KafkaConsumerConfig {
 
-    private final KafkaProperties kafkaProperties;
+  private final KafkaProperties kafkaProperties;
 
 
-    @Bean
-    public ConsumerFactory<String, Order> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(kafkaProperties.buildConsumerProperties());
-    }
+  @Bean
+  public ConsumerFactory<String, Order> consumerFactory() {
+    return new DefaultKafkaConsumerFactory<>(kafkaProperties.buildConsumerProperties());
+  }
 
 
-    @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Order>
-    kafkaListenerContainerFactory(ConsumerFactory<String, Order> consumerFactory) {
+  @Bean
+  public ConcurrentKafkaListenerContainerFactory<String, Order>
+  kafkaListenerContainerFactory(ConsumerFactory<String, Order> consumerFactory) {
 
-        ConcurrentKafkaListenerContainerFactory<String, Order> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory);
-        factory.setConcurrency(6);
-        factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
-        return factory;
-    }
+    ConcurrentKafkaListenerContainerFactory<String, Order> factory =
+        new ConcurrentKafkaListenerContainerFactory<>();
+    factory.setConsumerFactory(consumerFactory);
+    factory.setConcurrency(6);
+    factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
+    return factory;
+  }
 
 }

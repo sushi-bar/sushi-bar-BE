@@ -16,24 +16,25 @@ import org.testcontainers.utility.DockerImageName;
 @DisabledIfSystemProperty(named = "target.env", matches = "circleci")
 class MainApplicationTests {
 
-    private static final DockerImageName KAFKA_TEST_IMAGE = DockerImageName.parse("confluentinc/cp-kafka:latest");
-    private static final DockerImageName MONGO_TEST_IMAGE = DockerImageName.parse("mongo:latest");
-    @Container
-    static MongoDBContainer mongoDBContainer = new MongoDBContainer(MONGO_TEST_IMAGE);
-    @Container
-    static KafkaContainer kafkaContainer = new KafkaContainer(KAFKA_TEST_IMAGE);
+  private static final DockerImageName KAFKA_TEST_IMAGE = DockerImageName.parse(
+      "confluentinc/cp-kafka:latest");
+  private static final DockerImageName MONGO_TEST_IMAGE = DockerImageName.parse("mongo:latest");
+  @Container
+  static MongoDBContainer mongoDBContainer = new MongoDBContainer(MONGO_TEST_IMAGE);
+  @Container
+  static KafkaContainer kafkaContainer = new KafkaContainer(KAFKA_TEST_IMAGE);
 
-    @DynamicPropertySource
-    static void kafkaProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.kafka.bootstrap-servers",
-                () -> kafkaContainer.getHost() + ":" + kafkaContainer.getFirstMappedPort());
-        registry.add("spring.kafka.admin.properties.min-in-sync-replicas", () -> 1);
-        registry.add("spring.kafka.admin.properties.number-of-replicas", () -> 1);
-    }
+  @DynamicPropertySource
+  static void kafkaProperties(DynamicPropertyRegistry registry) {
+    registry.add("spring.kafka.bootstrap-servers",
+        () -> kafkaContainer.getHost() + ":" + kafkaContainer.getFirstMappedPort());
+    registry.add("spring.kafka.admin.properties.min-in-sync-replicas", () -> 1);
+    registry.add("spring.kafka.admin.properties.number-of-replicas", () -> 1);
+  }
 
 
-    @Test
-    void contextLoads() {
-    }
+  @Test
+  void contextLoads() {
+  }
 
 }
