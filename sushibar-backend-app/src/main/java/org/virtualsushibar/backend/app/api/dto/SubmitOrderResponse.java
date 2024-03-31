@@ -4,5 +4,6 @@ import lombok.Builder;
 
 
 @Builder
-public record OrderResponse(String orderConfirmationID) {
+public record SubmitOrderResponse(String orderConfirmationID) {
+
 }

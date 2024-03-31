@@ -16,19 +16,21 @@ import org.virtualsushibar.backend.app.dao.document.OrderStatus;
 @RequiredArgsConstructor
 @Slf4j
 public class OrderDocumentService {
-    private final MongoTemplate mongoTemplate;
 
-    public void findAndUpdate(String orderId, OrderStatus orderStatus) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("orderId").is(orderId));
+  private final MongoTemplate mongoTemplate;
 
-        Update update = new Update();
-        update.set("orderStatus", orderStatus);
+  public void findAndUpdate(String orderId, OrderStatus orderStatus) {
+    Query query = new Query();
+    query.addCriteria(Criteria.where("orderId").is(orderId));
 
-        OrderDocument save = mongoTemplate.findAndModify(
-                query, update,
-                new FindAndModifyOptions().returnNew(true), OrderDocument.class);
-        log.info("order with id: {} and orderID: {} has been updated!", save.getId(), save.getOrderId());
+    Update update = new Update();
+    update.set("orderStatus", orderStatus);
 
-    }
+    OrderDocument save = mongoTemplate.findAndModify(
+        query, update,
+        new FindAndModifyOptions().returnNew(true), OrderDocument.class);
+    log.info("order with id: {} and orderID: {} has been updated!", save.getId(),
+        save.getOrderId());
+
+  }
 }

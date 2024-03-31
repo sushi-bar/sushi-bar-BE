@@ -13,10 +13,10 @@ import org.virtualsushibar.backend.avro.ProcessedOrder;
 @RequiredArgsConstructor
 public class OrderKafkaListener {
 
-    @KafkaListener(topics = "${application.topic.consumer.name}", groupId = "sb-order-main")
-    public void kafkaListener(ProcessedOrder processedOrder, Acknowledgment acknowledgment) {
-        log.info("Message Received: {}", processedOrder);
-        acknowledgment.acknowledge();
-    }
+  @KafkaListener(topics = "${application.topic.consumer.name}", groupId = "sb-order-main")
+  public void kafkaListener(ProcessedOrder processedOrder, Acknowledgment acknowledgment) {
+    log.info("Message Received: {}", processedOrder);
+    acknowledgment.acknowledge();
+  }
 
 }

@@ -8,11 +8,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AbstractKafkaConfigs {
 
-    private final String producerTopic;
-    private final String consumerTopic;
-    public AbstractKafkaConfigs(@Value(value = "${application.topic.producer.name}") String producerTopic,
-                                @Value(value = "${application.topic.consumer.name}") String consumerTopic) {
-        this.producerTopic = producerTopic;
-        this.consumerTopic = consumerTopic;
-    }
+  private final String producerTopic;
+  private final String consumerTopic;
+
+  public AbstractKafkaConfigs(
+      @Value(value = "${application.topic.producer.name}") String producerTopic,
+      @Value(value = "${application.topic.consumer.name}") String consumerTopic) {
+    this.producerTopic = producerTopic;
+    this.consumerTopic = consumerTopic;
+  }
 }
