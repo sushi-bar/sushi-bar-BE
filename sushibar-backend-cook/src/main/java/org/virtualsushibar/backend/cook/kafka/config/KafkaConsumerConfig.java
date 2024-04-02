@@ -17,12 +17,10 @@ public class KafkaConsumerConfig {
 
   private final KafkaProperties kafkaProperties;
 
-
   @Bean
-  public ConsumerFactory<String, Order> consumerFactory() {
+  public ConsumerFactory<String, Order> consumerFactory(final KafkaProperties kafkaProperties) {
     return new DefaultKafkaConsumerFactory<>(kafkaProperties.buildConsumerProperties());
   }
-
 
   @Bean
   public ConcurrentKafkaListenerContainerFactory<String, Order>

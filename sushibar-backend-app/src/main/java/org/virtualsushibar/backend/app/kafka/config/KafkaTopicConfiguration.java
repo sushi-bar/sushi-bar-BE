@@ -10,8 +10,19 @@ import org.springframework.kafka.config.TopicBuilder;
 public class KafkaTopicConfiguration {
 
   @Bean
-  public NewTopic compactTopicExample(
+  public NewTopic createProducerTopic(
       @Value(value = "${application.topic.producer.name}") String topic,
+      @Value(value = "${application.topic.partitions:1}") int numberOfPartitions) {
+    return TopicBuilder.name(topic)
+        .partitions(numberOfPartitions)
+        .replicas(1)
+        .compact()
+        .build();
+  }
+
+  @Bean
+  public NewTopic createConsumerTopic(
+      @Value(value = "${application.topic.consumer.name}") String topic,
       @Value(value = "${application.topic.partitions:1}") int numberOfPartitions) {
     return TopicBuilder.name(topic)
         .partitions(numberOfPartitions)

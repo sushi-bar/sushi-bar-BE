@@ -17,6 +17,8 @@ spring:
 ## application related properties
 application:
   topic:
+    producer:
+      name: processed-orders
     consumer:
       name: orders
 

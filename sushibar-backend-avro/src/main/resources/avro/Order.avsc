@@ -9,7 +9,6 @@
       "type": {
         "type": "string",
         "avro.java.string": "String"
-
       }
     },
     {
@@ -21,7 +20,6 @@
       "type": {
         "type": "string",
         "avro.java.string": "String"
-
       }
     }
   ]

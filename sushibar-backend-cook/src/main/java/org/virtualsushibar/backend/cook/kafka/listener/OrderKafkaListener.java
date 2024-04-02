@@ -6,12 +6,17 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
 import org.virtualsushibar.backend.avro.Order;
+import org.virtualsushibar.backend.avro.OrderStatus;
+import org.virtualsushibar.backend.avro.ProcessedOrder;
+import org.virtualsushibar.backend.cook.kafka.KafkaProducer;
 
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class OrderKafkaListener {
+
+  private final KafkaProducer kafkaProducer;
 
   @KafkaListener(topics = "${application.topic.consumer.name}", groupId = "sb-order-main")
   public void kafkaListener(Order order, Acknowledgment acknowledgment) {
@@ -25,6 +30,15 @@ public class OrderKafkaListener {
         //TODO once Order is complete, CooK will Trigger the REST to SEND back to main APP
 
          */
+    //temporary solution - we need to define a service
+    ProcessedOrder processedOrder = ProcessedOrder.newBuilder()
+        .setOrderId(order.getOrderId())
+        .setOrderStatus(OrderStatus.COMPLETED)
+        .setCookId("enrico")
+        .setTimeTaken("")
+        .build();
+    kafkaProducer.sendMessage(processedOrder);
+
 
     acknowledgment.acknowledge();
   }
