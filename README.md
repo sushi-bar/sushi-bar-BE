@@ -20,16 +20,18 @@ work of the cook.
 ## Architecture (draft)
 Based on Apache Kafka & spring boot.
 
-![Architecture Draft](docs/draft-arch.jpeg)
+- app: main application
+- cook: process the order(s)
 
 ## Kafka (docker)
+From the [scripts](scripts) folder.
 
-Starting Kafka
+### Starting all the docker services
 ```shell
 $ docker compose up -d
 ```
 
-Stopping Kafka
+### Stopping all the docker services
 ```shell
 $ docker compose down
 ```
@@ -82,6 +84,9 @@ Configure the kafka connector for the specific topic with postman.
      }
 ```
 
+## OpenAPI (backend app)
+http://localhost:8080/swagger-ui/index.html
+
 ## Troubleshooting
 ### Schema issue
 ```shell
@@ -90,9 +95,6 @@ org.apache.kafka.common.errors.InvalidConfigurationException: Schema being regis
 #### workaround
 Set the compatibility mode of the topic to NONE.
 ![compatibility](docs/compatibility-mode.png)
-
-
-
 
 ## Compass (MongoDB)
 ![Compass connection](docs/compass-connection.png)
@@ -103,6 +105,5 @@ Set the compatibility mode of the topic to NONE.
 
 [Baeldung Kafka](https://www.baeldung.com/ops/kafka-docker-setup)
 
-### OpenAPI (backend app)
-http://localhost:8080/swagger-ui/index.html
+
 

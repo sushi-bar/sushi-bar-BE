@@ -1,4 +1,4 @@
-package org.virtualsushibar.backend.cook.kafka.config;
+package org.virtualsushibar.backend.cook.kafka;
 
 
 import lombok.RequiredArgsConstructor;

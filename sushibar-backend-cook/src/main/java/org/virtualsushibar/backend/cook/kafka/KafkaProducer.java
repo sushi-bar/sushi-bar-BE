@@ -26,10 +26,8 @@ public class KafkaProducer {
   }
 
   public void sendMessage(ProcessedOrder order) {
-
     CompletableFuture<SendResult<String, ProcessedOrder>> future = kafkaTemplate.send(topic, KEY,
         order);
-
     future.thenAccept(result -> {
           log.info("callback successful when publishing message: {}", order);
         })
