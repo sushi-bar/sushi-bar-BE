@@ -6,11 +6,7 @@
   "fields": [
     {
       "name": "orderId",
-      "type": {
-        "type": "string",
-        "avro.java.string": "String"
-
-      }
+      "type":"string"
     },
     {
       "name": "amount",
@@ -18,11 +14,7 @@
     },
     {
       "name": "meal",
-      "type": {
-        "type": "string",
-        "avro.java.string": "String"
-
-      }
+      "type": "string"
     }
   ]
 }

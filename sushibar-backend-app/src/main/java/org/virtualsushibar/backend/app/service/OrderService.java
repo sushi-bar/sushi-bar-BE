@@ -25,7 +25,6 @@ public class OrderService {
   private final OrderRepository orderRepository;
   private final KafkaProducer kafkaOrderProducer;
 
-
   @Transactional
   public String createOrder(Meal meal) {
     UUID uuid = UUID.randomUUID();

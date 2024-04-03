@@ -9,7 +9,7 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
-import org.virtualsushibar.backend.avro.Order;
+import org.virtualsushibar.backend.avro.ProcessedOrder;
 
 @Configuration
 @RequiredArgsConstructor
@@ -17,18 +17,17 @@ public class KafkaConsumerConfig {
 
   private final KafkaProperties kafkaProperties;
 
-
   @Bean
-  public ConsumerFactory<String, Order> consumerFactory(final KafkaProperties kafkaProperties) {
+  public ConsumerFactory<String, ProcessedOrder> consumerFactory(
+      final KafkaProperties kafkaProperties) {
     return new DefaultKafkaConsumerFactory<>(kafkaProperties.buildConsumerProperties());
   }
 
-
   @Bean
-  public ConcurrentKafkaListenerContainerFactory<String, Order>
-  kafkaListenerContainerFactory(ConsumerFactory<String, Order> consumerFactory) {
+  public ConcurrentKafkaListenerContainerFactory<String, ProcessedOrder>
+  kafkaListenerContainerFactory(ConsumerFactory<String, ProcessedOrder> consumerFactory) {
 
-    ConcurrentKafkaListenerContainerFactory<String, Order> factory =
+    ConcurrentKafkaListenerContainerFactory<String, ProcessedOrder> factory =
         new ConcurrentKafkaListenerContainerFactory<>();
     factory.setConsumerFactory(consumerFactory);
     factory.setConcurrency(6);

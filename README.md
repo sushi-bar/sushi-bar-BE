@@ -20,25 +20,31 @@ work of the cook.
 ## Architecture (draft)
 Based on Apache Kafka & spring boot.
 
-![Architecture Draft](docs/draft-arch.jpeg)
+- app: main application
+- cook: process the order(s)
 
 ## Kafka (docker)
+From the [scripts](scripts) folder.
 
-Starting Kafka
+### Starting all the docker services
 ```shell
 $ docker compose up -d
 ```
 
-Stopping Kafka
+### Stopping all the docker services
 ```shell
 $ docker compose down
 ```
-Connecting to the docker container
+### Connecting to the docker container
 ```shell
-
 $ docker exec -it  sushibar-backend-app-kafka-1 bash (For Windows add winpty before docker)
 $ /bin/kafka-topics --list --bootstrap-server localhost:29092
 $ /bin/kafka-console-consumer --bootstrap-server localhost:29092 --topic orders --from-beginning
+```
+#### Delete topic(s)
+```shell
+/bin/kafka-topics --bootstrap-server localhost:9092 --delete --topic processed-orders
+/bin/kafka-topics --bootstrap-server localhost:9092 --delete --topic orders
 ```
 
 ## Kafka-Mongo Connector
@@ -78,6 +84,9 @@ Configure the kafka connector for the specific topic with postman.
      }
 ```
 
+## OpenAPI (backend app)
+http://localhost:8080/swagger-ui/index.html
+
 ## Troubleshooting
 ### Schema issue
 ```shell
@@ -86,9 +95,6 @@ org.apache.kafka.common.errors.InvalidConfigurationException: Schema being regis
 #### workaround
 Set the compatibility mode of the topic to NONE.
 ![compatibility](docs/compatibility-mode.png)
-
-
-
 
 ## Compass (MongoDB)
 ![Compass connection](docs/compass-connection.png)
@@ -99,45 +105,5 @@ Set the compatibility mode of the topic to NONE.
 
 [Baeldung Kafka](https://www.baeldung.com/ops/kafka-docker-setup)
 
-### OpenAPI (backend app)
-http://localhost:8080/swagger-ui/index.html
 
-
-# Original Requirement (italian)
-
-
-
-progetto: gestione di un sushi bar
-
-consegna: 8 settimane divisi in sprint di 2 settimane ciascuno
-
-descrizione: sistema di gestione di un baracchino del sushi virtuale in 
-cui ogni cliente può consultare il menù online; una volta registrato
-può effettuare l'ordine, indicare il tavolo a cui esssere servito e pagare il conto.
-Una volta pagato il conto al cuoco compare la comanda da cucinare e servire
-al cliente la sua cena/pranzo.
-Un amministratore del locale ha a disposizione una dashboard per gestire gli utenti,
-personalizzare e comporre il menù con i prezzi delle portate, supervisionare il 
-lavoro del cuoco.
-
-Piano di consegna.
-
-sprint 1
-- registrazione utenti (nominativo, email, password) con conferma via mail
-- accesso amministratore da backend
-- accesso cuoco da backend
-- home page con info del ristorante
-
-sprint 2:
-- gestione pietanze e costi da parte dell'amministratore (nome, costo, quantità, descrizione, foto)
-- navigazione del menù da parte del cliente e possibilità di compore il carrello con le pietanze di cena/pranzo
-
-sprint 3:
-- processo di pagamento fake per utenti registrati e invio della comanda al cuoco
-- gestione delle comande da parte del cuoco: presa in carico e completamento (fake)
-- avviso al cliente (tramite mail) che la sua cena è pronta
-
-sprint 4:
-- gestione utenti da parte dell'aministratore
-- cambio password per password dimenticata
 
