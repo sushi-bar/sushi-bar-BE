@@ -2,7 +2,6 @@ package org.virtualsushibar.backend.app.kafka.listener;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.awaitility.Awaitility.await;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
 import java.time.Duration;
@@ -33,7 +32,7 @@ import org.virtualsushibar.backend.avro.ProcessedOrder;
     }
 )
 @Testcontainers
-class OrderKafkaListenerTest {
+class ProcessedOrderKafkaListenerTest {
   private static final String ORDER_ID = "1";
 
   @Container

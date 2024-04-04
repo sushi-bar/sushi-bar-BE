@@ -13,7 +13,7 @@ import org.virtualsushibar.backend.avro.ProcessedOrder;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class OrderKafkaListener {
+public class ProcessedOrderKafkaListener {
 
   private final OrderDocumentService orderDocumentService;
 
