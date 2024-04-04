@@ -13,12 +13,12 @@ import org.virtualsushibar.backend.avro.ProcessedOrder;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class OrderKafkaListener {
+public class ProcessedOrderKafkaListener {
 
   private final OrderDocumentService orderDocumentService;
 
   @KafkaListener(topics = "${application.topic.consumer.name}", groupId = "sb-order-main")
-  public void kafkaListener(ProcessedOrder processedOrder, Acknowledgment acknowledgment) {
+  public void consumeProcessedOrder(ProcessedOrder processedOrder, Acknowledgment acknowledgment) {
     log.info("Message Received: {}", processedOrder);
     //TODO - check the real status of the processed order
     orderDocumentService.findAndUpdate(processedOrder.getOrderId(), OrderStatus.ORDER_PROCESSED);

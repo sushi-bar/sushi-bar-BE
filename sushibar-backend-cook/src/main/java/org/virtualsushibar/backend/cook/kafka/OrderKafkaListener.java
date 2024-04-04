@@ -17,7 +17,7 @@ public class OrderKafkaListener {
   private final CookService cookService;
 
   @KafkaListener(topics = "${application.topic.consumer.name}", groupId = "sb-order-main")
-  public void kafkaListener(Order order, Acknowledgment acknowledgment) {
+  public void consumeOrder(Order order, Acknowledgment acknowledgment) {
     log.info("Message Received:{}", order);
     cookService.processOrder(order);
     acknowledgment.acknowledge();
