@@ -1,10 +1,17 @@
-# sushi-bar-BE 
-Back End of the sushi bar application.
-
+# sushi-bar backend
+Apache Kafka Proof of Concept - Integration with Spring Boot
+## Technologies
+- Confluent Apache Kafka
+- Spring Boot
+- MongoDB
+- Docker
+- TestContainers
+  
+## Build
 [![sushi-bar](https://circleci.com/gh/sushi-bar/sushi-bar-BE.svg?style=svg)](https://app.circleci.com/pipelines/github/sushi-bar/sushi-bar-BE)
 
 
-# Requirement
+## Requirements
 Management system of a virtual sushi booth in which each customer can consult the online menu; once registered
 can place the order, indicate the table to be served and pay the bill.
 Once the bill has been paid, the cook appears with the order to cook and serve to the customer his dinner / lunch.
@@ -12,7 +19,6 @@ A room administrator has a dashboard available to manage users, customize and co
 work of the cook.
 
 ## Prerequisites
-
 - java version 21
 - maven 3.9.3
 - docker 25.0.3  (<https://www.docker.com/>)
