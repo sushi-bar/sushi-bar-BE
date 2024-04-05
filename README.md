@@ -13,9 +13,9 @@ work of the cook.
 
 ## Prerequisites
 
-- jdk 11.0.4 or higher
-- maven 3.6.1 or higher
-- docker 1.6.0 or higher (<https://www.docker.com/>)
+- java version 21
+- maven 3.9.3
+- docker 25.0.3  (<https://www.docker.com/>)
 
 ## Architecture (draft)
 Based on Apache Kafka & spring boot.
