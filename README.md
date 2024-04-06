@@ -32,9 +32,10 @@ Based on Apache Kafka & spring boot.
 Before starting the app, you need to register oauth2 on [google cloud console](https://console.cloud.google.com/).
 
 ![img.png](docs/oauth2.png)
+
 This will generate the client Id and the Client Secret. Then replace the default ones in the [application.yml](sushibar-backend-app/src/main/resources/application.yml)
 
-```json
+```yml
   security:
     oauth2:
       client:
