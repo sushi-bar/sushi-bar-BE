@@ -18,6 +18,15 @@ spring:
     mongodb:
       uri: "mongodb://root:rootpassword@localhost:27017/order?authSource=admin"
 
+### oauth2 configuration ###
+  security:
+    oauth2:
+      client:
+        registration:
+          google :
+            clientId: <YOUR-CLIENT-ID>
+            clientSecret: <YOUR-CLIENT-SECRET>
+
 ## application related properties
 application:
   topic:

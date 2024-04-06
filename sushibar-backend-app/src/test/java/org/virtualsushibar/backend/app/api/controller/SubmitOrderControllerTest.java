@@ -18,7 +18,8 @@ import org.virtualsushibar.backend.app.api.dto.SubmitOrderRequest;
 import org.virtualsushibar.backend.app.service.CircuitBreakerOrderService;
 
 @WebMvcTest
-@AutoConfigureMockMvc
+//TODO - evaluate how to mock oauth2 gmail authentication
+@AutoConfigureMockMvc(addFilters = false)
 @ContextConfiguration(classes = {SubmitOrderController.class})
 class SubmitOrderControllerTest {
 
