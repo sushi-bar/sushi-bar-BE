@@ -28,6 +28,21 @@ Based on Apache Kafka & spring boot.
 
 - app: main application
 - cook: process the order(s)
+## Oauth2 Gmail (main app)
+Before starting the app, you need to register oauth2 on [google cloud console](https://console.cloud.google.com/).
+
+![img.png](docs/oauth2.png)
+This will generate the client Id and the Client Secret. Then replace the default ones in the [application.yml](sushibar-backend-app/src/main/resources/application.yml)
+
+```json
+  security:
+    oauth2:
+      client:
+        registration:
+          google :
+            clientId: <YOUR-CLIENT-ID>
+            clientSecret: <YOUR-CLIENT-SECRET>
+```
 
 ## Kafka (docker)
 From the [scripts](scripts) folder.
@@ -110,6 +125,8 @@ Set the compatibility mode of the topic to NONE.
 [3 Simple Steps to set up Kafka locally using Docker](https://towardsdev.com/3-simple-steps-to-set-up-kafka-locally-using-docker-b07f71f0e2c9)
 
 [Baeldung Kafka](https://www.baeldung.com/ops/kafka-docker-setup)
+
+[Oauth gmail](https://www.youtube.com/watch?v=qcz2jBLNOtc&t=29s)
 
 
 
