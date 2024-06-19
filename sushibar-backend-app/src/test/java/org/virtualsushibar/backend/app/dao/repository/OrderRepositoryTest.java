@@ -5,7 +5,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -18,7 +17,6 @@ import org.virtualsushibar.backend.app.dao.document.OrderDocument;
 import org.virtualsushibar.backend.app.dao.document.OrderStatus;
 
 //https://github.com/rieckpil/blog-tutorials/blob/master/spring-data-mongo-test-testcontainers/src/test/java/de/rieckpil/blog/CustomerRepositoryTest.java
-@DisabledIfSystemProperty(named = "target.env", matches = "circleci")
 @Testcontainers
 @DataMongoTest
 @TestPropertySource(properties = "spring.mongodb.embedded.version=3.5.5")

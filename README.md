@@ -8,7 +8,7 @@ Apache Kafka Proof of Concept - Integration with Spring Boot
 - TestContainers
   
 ## Build
-[![sushi-bar](https://circleci.com/gh/sushi-bar/sushi-bar-BE.svg?style=svg)](https://app.circleci.com/pipelines/github/sushi-bar/sushi-bar-BE)
+[![Build](https://github.com/sushi-bar/sushi-bar-BE/actions/workflows/maven.yml/badge.svg)](https://github.com/sushi-bar/sushi-bar-BE/actions/workflows/maven.yml)
 
 
 ## Requirements
