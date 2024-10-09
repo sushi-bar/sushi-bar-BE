@@ -1,6 +1,7 @@
 package org.virtualsushibar.backend.app.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -9,10 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.virtualsushibar.backend.app.api.Meals;
-import org.virtualsushibar.backend.app.api.dto.OrderRequest;
+import org.virtualsushibar.backend.app.dao.dto.OrderRequest;
 import org.virtualsushibar.backend.app.service.OrderService;
 
-import javax.annotation.Resource;
 
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

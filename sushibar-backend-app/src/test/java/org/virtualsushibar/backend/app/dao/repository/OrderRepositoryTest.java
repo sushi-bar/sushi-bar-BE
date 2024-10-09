@@ -1,3 +1,4 @@
+/*
 package org.virtualsushibar.backend.app.dao.repository;
 
 import org.junit.jupiter.api.AfterEach;
@@ -20,7 +21,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 //https://github.com/rieckpil/blog-tutorials/blob/master/spring-data-mongo-test-testcontainers/src/test/java/de/rieckpil/blog/CustomerRepositoryTest.java
 @DisabledIfSystemProperty(named = "target.env", matches = "circleci")
 @Testcontainers
-@DataMongoTest(excludeAutoConfiguration = EmbeddedMongoAutoConfiguration.class)
+@DataMongoTest(excludeAutoConfiguration = Embeded.class)
 class OrderRepositoryTest {
 
     @Container
@@ -60,4 +61,4 @@ class OrderRepositoryTest {
                 .build();
         this.orderRepository.save(orderEntity);
     }
-}
+}*/

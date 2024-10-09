@@ -1,4 +1,4 @@
-package org.virtualsushibar.backend.app.api.dto;
+package org.virtualsushibar.backend.app.dao.dto;
 
 import lombok.Builder;
 import lombok.Data;

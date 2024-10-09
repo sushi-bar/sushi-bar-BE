@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>sushibar-backend-app</artifactId>
 	<packaging>jar</packaging>
-	<name>Sushibar Backend Kafka</name>
+	<name>Sushibar Backend App</name>
 	<description>Sushi Bar App application</description>
 	<properties>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
@@ -84,8 +84,13 @@
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

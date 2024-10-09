@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.virtualsushibar.backend.app.api.dto.OrderRequest;
-import org.virtualsushibar.backend.app.api.dto.OrderResponse;
+import org.virtualsushibar.backend.app.dao.dto.OrderRequest;
+import org.virtualsushibar.backend.app.dao.dto.OrderResponse;
 import org.virtualsushibar.backend.app.service.OrderService;
 
 @RestController

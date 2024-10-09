@@ -11,12 +11,11 @@
         <name>The SushiBarTeam</name>
     </organization>
     <packaging>pom</packaging>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
-        <spring.boot.version>2.7.5</spring.boot.version>
+        <java.version>21</java.version>
+        <spring.boot.version>3.1.4</spring.boot.version>
         <avro.version>1.11.1</avro.version>
         <confluent.version>5.5.5</confluent.version>
         <confluent.serializer.version>6.1.0</confluent.serializer.version>
@@ -76,6 +75,11 @@
                 <version>${testcontainers.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-streams</artifactId>
+                <version>2.7.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

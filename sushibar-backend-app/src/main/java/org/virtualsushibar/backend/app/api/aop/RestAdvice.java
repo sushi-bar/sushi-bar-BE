@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.virtualsushibar.backend.app.api.dto.Message;
+import org.virtualsushibar.backend.app.dao.dto.Message;
 
 @RestControllerAdvice
 @Slf4j

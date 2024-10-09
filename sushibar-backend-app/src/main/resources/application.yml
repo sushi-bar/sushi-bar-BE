@@ -27,6 +27,7 @@ spring:
 
 
 
+
 ## application related properties
 application:
   topic:
