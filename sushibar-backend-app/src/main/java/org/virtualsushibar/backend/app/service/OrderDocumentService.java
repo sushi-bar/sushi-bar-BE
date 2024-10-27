@@ -26,11 +26,18 @@ public class OrderDocumentService {
     Update update = new Update();
     update.set("orderStatus", orderStatus);
 
-    OrderDocument save = mongoTemplate.findAndModify(
-        query, update,
-        new FindAndModifyOptions().returnNew(true), OrderDocument.class);
-    log.info("order with id: {} and orderID: {} has been updated!", save.getId(),
-        save.getOrderId());
+    try {
+      OrderDocument save = mongoTemplate.findAndModify(
+              query, update,
+              new FindAndModifyOptions().returnNew(true), OrderDocument.class);
+      assert save != null;
+      log.info("order with id: {} and orderID: {} has been updated!", save.getId(),
+              save.getOrderId());
+    }catch (Exception e){
+      log.error("Failed to update order {}",update);
+    }
+
+
 
   }
 }
