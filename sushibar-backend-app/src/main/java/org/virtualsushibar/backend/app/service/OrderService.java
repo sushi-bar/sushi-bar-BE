@@ -42,11 +42,17 @@ public class OrderService {
         .createdAt(Instant.now())
         .build();
 
-    OrderDocument save = orderRepository.save(document);
-    log.info("Order saved in mongoDB with id: {}", save.getId());
-    kafkaOrderProducer.sendMessage(order);
-    log.info("Order: {} sent", order.getOrderId());
-    return order.getOrderId();
+    try {
+      OrderDocument save = orderRepository.save(document);
+      log.info("Order saved in mongoDB with id: {}", save.getId());
+      kafkaOrderProducer.sendMessage(order);
+      log.info("Order: {} sent", order.getOrderId());
+      return order.getOrderId();
+    }
+
+    catch (Exception e){
+      throw new RuntimeException("Order not saved successfully");
+    }
   }
   @Transactional
   public List<OrderDocument> findAll() {
