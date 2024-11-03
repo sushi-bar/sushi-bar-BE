@@ -5,10 +5,7 @@ import static org.awaitility.Awaitility.await;
 import static org.mockito.Mockito.verify;
 
 import java.time.Duration;
-import java.util.Properties;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,7 +27,6 @@ import org.virtualsushibar.backend.avro.ProcessedOrder;
 
 //adapted from: https://testcontainers.com/guides/testing-spring-boot-kafka-listener-using-testcontainers/
 @SpringBootTest
-@DisabledIfSystemProperty(named = "target.env", matches = "circleci")
 @TestPropertySource(
     properties = {
         "spring.kafka.consumer.auto-offset-reset=earliest"
@@ -58,6 +54,10 @@ class ProcessedOrderKafkaListenerTest {
           .withEnv("SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS",
               "PLAINTEXT://" + KAFKA_CONTAINER.getNetworkAliases().get(0) + ":9092")
           .waitingFor(Wait.forHttp("/subjects").forStatusCode(200));
+
+  private static String getSchemaRegistryUrl() {
+    return "http://" + SCHEMA_REGISTRY.getHost() + ":" + SCHEMA_REGISTRY.getFirstMappedPort();
+  }
 
   @DynamicPropertySource
   static void overrideProperties(DynamicPropertyRegistry registry) {
@@ -89,11 +89,5 @@ class ProcessedOrderKafkaListenerTest {
               org.virtualsushibar.backend.app.dao.document.OrderStatus.ORDER_PROCESSED);
         });
   }
-
-  public static String getSchemaRegistryUrl() {
-    return "http://" + SCHEMA_REGISTRY.getHost() + ":" + SCHEMA_REGISTRY.getFirstMappedPort();
-  }
-
-
 
 }
