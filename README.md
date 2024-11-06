@@ -107,7 +107,7 @@ Configure the kafka connector for the specific topic with postman.
 ```
 
 ## OpenAPI (backend app)
-http://localhost:8080/swagger-ui/index.html
+[swagger - localhost](http://localhost:8080/swagger-ui/index.html)
 
 ## Troubleshooting
 ### Schema issue

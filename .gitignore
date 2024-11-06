@@ -5,3 +5,4 @@ target/
 *.txt
 
 /sushibar-backend-avro/generated-sources/
+/sushibar-backend-app/src/main/resources/application-local.yml
