@@ -28,7 +28,19 @@ Based on Apache Kafka & spring boot.
 
 - app: main application
 - cook: process the order(s)
+
+## Disabling security
+Disabling Security for Local Development
+Use the local profile at runtime to disable security for development.
+```shell
+java -jar your-application.jar --spring.profiles.active=local
+```
+
+
+
 ## Oauth2 Gmail (main app)
+
+
 Before starting the app, you need to register oauth2 on [google cloud console](https://console.cloud.google.com/).
 
 ![img.png](docs/oauth2.png)
