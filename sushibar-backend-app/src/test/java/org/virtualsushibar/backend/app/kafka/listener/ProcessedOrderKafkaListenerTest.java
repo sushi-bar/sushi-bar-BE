@@ -56,7 +56,9 @@ class ProcessedOrderKafkaListenerTest {
           .waitingFor(Wait.forHttp("/subjects").forStatusCode(200));
 
   private static String getSchemaRegistryUrl() {
-    return "http://" + SCHEMA_REGISTRY.getHost() + ":" + SCHEMA_REGISTRY.getFirstMappedPort();
+    return """
+        http://%s:%d
+        """.formatted(SCHEMA_REGISTRY.getHost(), SCHEMA_REGISTRY.getFirstMappedPort());
   }
 
   @DynamicPropertySource
