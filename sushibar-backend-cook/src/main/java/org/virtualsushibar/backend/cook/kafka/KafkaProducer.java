@@ -3,6 +3,7 @@ package org.virtualsushibar.backend.cook.kafka;
 import java.util.concurrent.CompletableFuture;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.KafkaException;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
@@ -33,7 +34,8 @@ public class KafkaProducer {
         })
         .exceptionally(ex -> {
           log.error("Error while publishing message: {}", order, ex);
-          return null; // or handle the exception in a different way
+            ; // or handle the exception in a different way
+          throw new KafkaException("Error in publishing to Kafka");
         });
   }
 
